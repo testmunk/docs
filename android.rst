@@ -33,6 +33,8 @@ In case you don't have the right permissions, please execute:
 
 		$ ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future gem install calabash-android
 
+	This error is due to deprecated arguments for the `clang` executable that `gem` calls when installing certain extensions.
+
 Download and Install Android SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
