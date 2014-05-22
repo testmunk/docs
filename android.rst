@@ -9,11 +9,15 @@ Installation
 Install Calabash gem
 ~~~~~~~~~~~~~~~~~~~~
 
-In order to get started with testmunk, you need to install the calabash gem. Simply open your terminal window and execute::
+In order to get started with testmunk, you need to install the calabash gem. Simply open your terminal window and execute:
+
+.. code-block:: console
 
 	$ gem install calabash-android
 
-In case you don't have the right permissions, please execute::
+In case you don't have the right permissions, please execute:
+
+.. code-block:: console
 
 	$ sudo gem install calabash-android
 
@@ -21,7 +25,9 @@ In case you don't have the right permissions, please execute::
 	What is calabash?
 
 .. WARNING:: 
-	If you are getting an error that says "clang: error: unknown argument: '-multiply_definedsuppress'", you must run these 2 commands instead::
+	If you are getting an error that says "clang: error: unknown argument: '-multiply_definedsuppress'", you must run these 2 commands instead:
+
+	.. code-block:: console
 
 		$ sudo -i
 
@@ -51,9 +57,11 @@ After you have configured your bash profile, please close all terminal windows t
 
 Plug in your Android device
 
-After you have plugged in your android device into your mac, open a new terminal window and execute::
+After you have plugged in your android device into your mac, open a new terminal window and execute:
 
-	$adb devices
+.. code-block:: console
+
+	$ adb devices
 
 You should see output similar to the following, which confirmes that your device was recognized::
 
@@ -67,19 +75,25 @@ VIDEO HEREEEEEEE
 Writing testcases
 -----------------
 
-After you have downloaded the files open a new terminal window and navigate via cd to the TestmunkAndroidDemo folder that you just downloaded. Then execute::
+After you have downloaded the files open a new terminal window and navigate via cd to the TestmunkAndroidDemo folder that you just downloaded. Then execute:
+
+.. code-block:: console
 
 	$ calabash-android run TestmunkTest_debug.apk --verbose
 
 .. WARNING::
-	If this command returns an error that says "No keystores found. Please create one or run calabash-android setup to configure calabash-android to use an existing keystore," then, run the following commands before continuing::
+	If this command returns an error that says "No keystores found. Please create one or run calabash-android setup to configure calabash-android to use an existing keystore," then, run the following commands before continuing:
+
+	.. code-block:: console
 
 		$ keytool -genkey -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 
 		$ calabash-android run TestmunkTest_debug.apk
 
 
-You should get prompted to resign the app. Follow the terminal instructions to resign the app. After resigning please again execute::
+You should get prompted to resign the app. Follow the terminal instructions to resign the app. After resigning please again execute:
+
+.. code-block:: console
 
 	$ calabash-android run TestmunkTest_debug.apk --verbose
 
@@ -90,7 +104,9 @@ In the following we'd like to show you how you can easily write your own testcas
 Inspect app for elements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Please tap on the app on your device so that it is launched. Open a new terminal window and execute::
+Please tap on the app on your device so that it is launched. Open a new terminal window and execute:
+
+.. code-block:: console
 
 	$ uiautomatorviewer
 
@@ -106,11 +122,15 @@ This inspection is important to identify the right elements that you later will 
 
 VIDEO HEREEE
 
-A more advanced way of inspecting elements on the view is using the console. While your app is running on the device, open a new terminal window and enter::
+A more advanced way of inspecting elements on the view is using the console. While your app is running on the device, open a new terminal window and enter:
+
+.. code-block:: console
  
 	$ calabash-android console TestmunkTest_debug.apk
  
-and then enter these commands::
+and then enter these commands:
+
+.. code-block:: console
  
 	> start_test_server_in_background
 
@@ -121,7 +141,9 @@ You should see all elements on the view.
 Writing testcases
 ~~~~~~~~~~~~~~~~~
 
-Within the sample app that you just downloaded, please open the `my_first.feature` file within the `feature` folder. These are some sample testcases that we scripted for a demo application. One testcase looks like this::
+Within the sample app that you just downloaded, please open the `my_first.feature` file within the `feature` folder. These are some sample testcases that we scripted for a demo application. One testcase looks like this:
+
+.. code-block:: cucumber
 
 	Feature: Testapp V.1.2
 
@@ -134,7 +156,9 @@ Within the sample app that you just downloaded, please open the `my_first.featur
 		Then I should see text containing "test app"
 	
 
-In order to write a second testcase write a new testscenario. For example::
+In order to write a second testcase write a new testscenario. For example:
+
+.. code-block:: cucumber
 
 	Scenario: 1) Going to next screen and back
 		When I enter "Something" into input field number 1
@@ -186,7 +210,9 @@ Running on your local device
 
 Ensure that your device is being recognised by starting a terminal window and executing adb devices.
  
-In order to run your tests on your device, please navigate via `cd` to your project folder and execute::
+In order to run your tests on your device, please navigate via `cd` to your project folder and execute:
+
+.. code-block:: console
  
 	$ calabash-android run sample.apk --verbose
  
