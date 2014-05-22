@@ -1,7 +1,7 @@
 Android
 =======
 
-Testmunk android enables you to write automated functional test cases that you can run on various android devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write test cases and let them run locally on your emulator and android device as well as on a variety of android devices over the cloud in the testmunk device lab.
+Testmunk android enables you to write automated functional testcases that you can run on various android devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write testcases and let them run locally on your emulator and android device as well as on a variety of android devices over the cloud in the testmunk device lab.
 
 Installation
 ------------
@@ -64,7 +64,7 @@ In case you don't see any output please confirm that you activated the "USB debu
 
 VIDEO HEREEEEEEE
 
-Writing test cases
+Writing testcases
 -----------------
 
 After you have downloaded the files open a new terminal window and navigate via cd to the TestmunkAndroidDemo folder that you just downloaded. Then execute::
@@ -83,9 +83,9 @@ You should get prompted to resign the app. Follow the terminal instructions to r
 
 	$ calabash-android run TestmunkTest_debug.apk --verbose
 
-After a minute or two the app should get launched on your device and our sample test cases should get executed. It will ca. 3-5 min for the test cases to get completed, you can also exit the terminal to stop the testrun. Simply enter `exit` into the terminal.
+After a minute or two the app should get launched on your device and our sample testcases should get executed. It will ca. 3-5 min for the testcases to get completed, you can also exit the terminal to stop the testrun. Simply enter `exit` into the terminal.
 
-In the following we'd like to show you how you can easily write your own test case.
+In the following we'd like to show you how you can easily write your own testcase.
 
 Inspect app for elements
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,7 +99,7 @@ On the newly opened window, please click on the device icon on the upper left co
 
 IMAGE HEREEEEE
 
-This inspection is important to identify the right elements that you later will need for your test cases. For example the `resource_id` is needed when you use the teststep `Then I touch view with id...`. 
+This inspection is important to identify the right elements that you later will need for your testcases. For example the `resource_id` is needed when you use the teststep `Then I touch view with id...`. 
 
 .. IMPORTANT::
 	If you use an Android version lower than API level 18 / Jelly Bean you will not be able to interact with the `resource-id` of the element.
@@ -118,10 +118,10 @@ and then enter these commands::
  
 You should see all elements on the view.
 
-Writing test cases
+Writing testcases
 ~~~~~~~~~~~~~~~~~
 
-Within the sample app that you just downloaded, please open the `my_first.feature` file within the `feature` folder. These are some sample test cases that we scripted for a demo application. One test case looks like this::
+Within the sample app that you just downloaded, please open the `my_first.feature` file within the `feature` folder. These are some sample testcases that we scripted for a demo application. One testcase looks like this::
 
 	Feature: Testapp V.1.2
 
@@ -134,7 +134,7 @@ Within the sample app that you just downloaded, please open the `my_first.featur
 		Then I should see text containing "test app"
 	
 
-In order to write a second test case write a new testscenario. For example::
+In order to write a second testcase write a new testscenario. For example::
 
 	Scenario: 1) Going to next screen and back
 		When I enter "Something" into input field number 1
@@ -169,12 +169,13 @@ Running testruns
 General
 ~~~~~~~
 
-Testmunk Android enables you to run your test cases on:
+Testmunk Android enables you to run your testcases on:
  1. the virtual emulator
  2. on your plugged in Android device
  3. on a variety of Android devices with different OS versions in the testmunk device lab.
 
- Running locally on the emulator
+Running locally on the emulator
+-------------------------------
 
 Go to applications and start "Eclipse". In the menu bar click click on `Window > Android Virtual Device Manager` and create an emulator you want to test on.
 
@@ -194,6 +195,6 @@ Your testrun should get executed on your device. It's important that you use an 
 Running on multiple android devices
 -----------------------------------
 
-In order to run your test cases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your apk file and test cases.
+In order to run your testcases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your apk file and testcases.
 
 VIDEO HEREEEEE
