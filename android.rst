@@ -44,7 +44,7 @@ The Bash profile .bash_profile is a hidden file in your personal folder that you
 	export ANDROID_HOME=/Applications/sdk 
 	export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/add-ons
 
-After you have configured your bash profile please close all terminal windows to affect your changes.
+After you have configured your bash profile, please close all terminal windows to affect your changes.
 
 .. HINT::
 	What is calabash?
