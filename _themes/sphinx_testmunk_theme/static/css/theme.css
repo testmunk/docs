@@ -4190,6 +4190,12 @@ nav.stickynav {
 .rst-content .hint .wy-alert-title, .rst-content .hint .admonition-title, .rst-content .tip .wy-alert-title, .rst-content .tip .admonition-title, .rst-content .important .wy-alert-title, .rst-content .important .admonition-title {
   background: #8dc6ec;
 }
+.rst-content .error, .rst-content .danger {
+  background: #e1e1e1;
+}
+.rst-content .error .wy-alert-title, .rst-content .error .admonition-title, .rst-content .danger .wy-alert-title, .rst-content .danger .admonition-title {
+  background: #888888;
+}
 .rst-content .admonition table {
   border-color: rgba(0, 0, 0, 0.1);
 }

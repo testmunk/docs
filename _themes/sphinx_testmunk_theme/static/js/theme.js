@@ -14,6 +14,22 @@ $( document ).ready(function() {
     });  
     // Make tables responsive
     $("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
+
+    //Admonitions start retracted
+    $(".admonition").children().not(".admonition-title").hide();
+
+    //Clicking the title shows the body of the admonition
+    $(".admonition").click(function () {
+        var body = $(this).children().not(".admonition-title");
+
+        if (body.is(":visible")) body.hide(300);
+        else body.show(300);
+
+    });
+
+    //Make the danger admonition display troubleshooting instead
+    $(".admonition.danger").children(".first").html("Troubleshooting")
+
 });
 
 window.SphinxRtdTheme = (function (jquery) {

@@ -24,7 +24,7 @@ In case you don't have the right permissions, please execute:
 .. HINT::
 	What is calabash?
 
-.. WARNING:: 
+.. DANGER:: 
 	If you are getting an error that says "clang: error: unknown argument: '-multiply_definedsuppress'", you must run these 2 commands instead:
 
 	.. code-block:: console
@@ -83,7 +83,7 @@ After you have downloaded the files open a new terminal window and navigate via 
 
 	$ calabash-android run TestmunkTest_debug.apk --verbose
 
-.. WARNING::
+.. DANGER::
 	If this command returns an error that says "No keystores found. Please create one or run calabash-android setup to configure calabash-android to use an existing keystore," then, run the following commands before continuing:
 
 	.. code-block:: console
