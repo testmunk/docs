@@ -3195,7 +3195,7 @@ a.wy-text-neutral:hover {
 h1, h2, h3, h4, h5, h6, legend {
   margin-top: 0;
   font-weight: 700;
-  font-family: "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+  font-family: "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 }
 
 p {
@@ -3803,12 +3803,9 @@ div[class^='highlight'] pre {
   border-color: #248fd5;
 }
 .wy-side-nav-search img {
-  margin: auto auto 0.809em auto;
-  height: 45px;
-  width: 45px;
-  background-color: #2980b9;
+  margin: auto auto 0.05em auto;
+  height: 37px;
   padding: 5px;
-  border-radius: 100%;
 }
 .wy-side-nav-search > a, .wy-side-nav-search .wy-dropdown > a {
   color: #fcfcfc;
@@ -4183,17 +4180,41 @@ nav.stickynav {
 .rst-content .admonition-title:before {
   margin-right: 4px;
 }
+.rst-content .note, .rst-content .seealso {
+  background: #f0e7f4;
+}
+.rst-content .note .wy-alert-title, .rst-content .note .admonition-title, .rst-content .seealso .wy-alert-title, .rst-content .seealso .admonition-title {
+  background: #c6a0d5;
+}
+.rst-content .note .wy-alert-title:hover, .rst-content .note .admonition-title:hover, .rst-content .seealso .wy-alert-title:hover, .rst-content .seealso .admonition-title:hover {
+  background: #b07cc6;
+}
 .rst-content .hint, .rst-content .tip, .rst-content .important {
   background: #e4f2fb;
 }
 .rst-content .hint .wy-alert-title, .rst-content .hint .admonition-title, .rst-content .tip .wy-alert-title, .rst-content .tip .admonition-title, .rst-content .important .wy-alert-title, .rst-content .important .admonition-title {
-  background: #8dc6ec;
+  background: #62b1e4;
+}
+.rst-content .hint .wy-alert-title:hover, .rst-content .hint .admonition-title:hover, .rst-content .tip .wy-alert-title:hover, .rst-content .tip .admonition-title:hover, .rst-content .important .wy-alert-title:hover, .rst-content .important .admonition-title:hover {
+  background: #369bdd;
 }
 .rst-content .error, .rst-content .danger {
-  background: #e1e1e1;
+  background: #fcf3d0;
 }
 .rst-content .error .wy-alert-title, .rst-content .error .admonition-title, .rst-content .danger .wy-alert-title, .rst-content .danger .admonition-title {
-  background: #888888;
+  background: #f5d552;
+}
+.rst-content .error .wy-alert-title:hover, .rst-content .error .admonition-title:hover, .rst-content .danger .wy-alert-title:hover, .rst-content .danger .admonition-title:hover {
+  background: #f2c922;
+}
+.rst-content .warning, .rst-content .caution, .rst-content .attention, .rst-content .admonition-todo {
+  background: #fbe9d9;
+}
+.rst-content .warning .wy-alert-title, .rst-content .warning .admonition-title, .rst-content .caution .wy-alert-title, .rst-content .caution .admonition-title, .rst-content .attention .wy-alert-title, .rst-content .attention .admonition-title, .rst-content .admonition-todo .wy-alert-title, .rst-content .admonition-todo .admonition-title {
+  background: #f0b37e;
+}
+.rst-content .warning .wy-alert-title:hover, .rst-content .warning .admonition-title:hover, .rst-content .caution .wy-alert-title:hover, .rst-content .caution .admonition-title:hover, .rst-content .attention .wy-alert-title:hover, .rst-content .attention .admonition-title:hover, .rst-content .admonition-todo .wy-alert-title:hover, .rst-content .admonition-todo .admonition-title:hover {
+  background: #eb9950;
 }
 .rst-content .admonition table {
   border-color: rgba(0, 0, 0, 0.1);
@@ -4264,7 +4285,7 @@ nav.stickynav {
 }
 .rst-content .sidebar .sidebar-title {
   display: block;
-  font-family: "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+  font-family: "proxima-nova", "Helvetica Neue", Arial, sans-serif;
   font-weight: bold;
   background: #e1e4e5;
   padding: 6px 12px;

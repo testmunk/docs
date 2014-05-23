@@ -1,3 +1,16 @@
+//Code for toggling the display of the admonition body
+function toggleAdmBody() {
+    var body = $(this).children().not(".admonition-title");
+
+    if (body.is(":visible")){
+        body.hide(300);
+        $(this).css("padding-bottom", "0px")
+    } else {
+        body.show(300);
+        $(this).css("padding-bottom", "12px")
+    }
+}
+
 $( document ).ready(function() {
     // Shift nav in mobile when clicking the menu.
     $(document).on('click', "[data-toggle='wy-nav-top']", function() {
@@ -16,16 +29,10 @@ $( document ).ready(function() {
     $("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
 
     //Admonitions start retracted
-    $(".admonition").children().not(".admonition-title").hide();
+    $("div.admonition").each(toggleAdmBody);
 
     //Clicking the title shows the body of the admonition
-    $(".admonition").click(function () {
-        var body = $(this).children().not(".admonition-title");
-
-        if (body.is(":visible")) body.hide(300);
-        else body.show(300);
-
-    });
+    $(".admonition").click(toggleAdmBody);
 
     //Make the danger admonition display troubleshooting instead
     $(".admonition.danger").children(".first").html("Troubleshooting")
