@@ -2576,7 +2576,7 @@ input, select, textarea {
 .wy-control-group {
   margin-bottom: 24px;
   *zoom: 1;
-  max-width: 68em;
+  max-width: 850px;
   margin-left: auto;
   margin-right: auto;
   *zoom: 1;
@@ -3803,7 +3803,6 @@ div[class^='highlight'] pre {
   border-color: #248fd5;
 }
 .wy-side-nav-search img {
-  display: block;
   margin: auto auto 0.809em auto;
   height: 45px;
   width: 45px;
@@ -3927,7 +3926,7 @@ div[class^='highlight'] pre {
 .wy-nav-content {
   padding: 1.618em 3.236em;
   height: 100%;
-  max-width: 800px;
+  max-width: 850px;
   margin: auto;
 }
 
