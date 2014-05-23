@@ -4168,6 +4168,13 @@ nav.stickynav {
 }
 .rst-content .section > img {
   margin-bottom: 24px;
+  max-width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid;
+  border-color: #999999;
+  padding: 1.5%;
 }
 .rst-content blockquote {
   margin-left: 24px;

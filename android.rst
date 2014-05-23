@@ -115,7 +115,7 @@ Please tap on the app on your device so that it is launched. Open a new terminal
 On the newly opened window, please click on the device icon on the upper left corner to get an actual screenshot from the device.
 
 
-IMAGE HEREEEEE
+.. image:: /_static/img/uiautoss.png
 
 This inspection is important to identify the right elements that you later will need for your testcases. For example the `resource_id` is needed when you use the teststep `Then I touch view with id...`. 
 
