@@ -226,3 +226,153 @@ Running on multiple android devices
 In order to run your testcases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your apk file and testcases.
 
 VIDEO HEREEEEE
+
+Image Comparison in Calabash
+----------------------------
+
+The goal of this post is to show how we can do basic image recognition using Calabash Android library.
+
+Image comparison is another way that allows you to assert your tests using calabash cucumber. However, calabash cucumber does not support it by default. So, we have created some custom steps that you can include in your features folder, and you’ll have image comparison working in a short time.
+
+Image comparison is a tricky topic. Some comparisons are as simple as pixel by pixel checking; very advanced scenarios may compare a small image within a bigger image, or even images which are slightly shifted or compressed.
+
+We’ve chosen the simple approach for now, which means a pixel by pixel check. This check uses a difference blend, which is the same thing Github uses to diff images.
+
+If we have pixelation, or an image that is slightly lighter or darker, the steps will still be able to make the comparison. Another benefit is that it returns a more realistic readout of percentage changed, and allows us to set maximum thresholds while testing.
+
+If you want to compare an image (local or remote) with the current screen shot, it needs to match the resolution in order to be effective. The best use case is testing the app on a device that you already have the screenshots for.
+
+To get up and running, we will need to install an extra gem to handle the image manipulation. We can do that using:
+
+.. code-block:: console
+
+	$ gem install oily_png
+
+This is in addition to the calabash-android gem, which should already be installed and configured.
+
+Once you have the gem installed, create a new file under features/step_definitions folder (with any name). Paste in the following code:
+
+.. code-block:: ruby
+
+	require 'oily_png'
+	require 'open-uri'
+	include ChunkyPNG::Color
+	 
+	def starts_with(item, prefix)
+	  prefix = prefix.to_s
+	  item[0, prefix.length] == prefix
+	end
+	 
+	# compares two images on disk, returns the % difference
+	def compare_image(image1, image2)
+	  images = [
+	    ChunkyPNG::Image.from_file("screens/#{image1}"),
+	    ChunkyPNG::Image.from_file("screens/#{image2}")
+	  ]
+	  count=0
+	  images.first.height.times do |y|
+	    images.first.row(y).each_with_index do |pixel, x|
+	 
+	      images.last[x,y] = rgb(
+	        r(pixel) + r(images.last[x,y]) - 2 * [r(pixel), r(images.last[x,y])].min,
+	        g(pixel) + g(images.last[x,y]) - 2 * [g(pixel), g(images.last[x,y])].min,
+	        b(pixel) + b(images.last[x,y]) - 2 * [b(pixel), b(images.last[x,y])].min
+	      )
+	      if images.last[x,y] == 255
+	        count = count + 1
+	      end
+	    end
+	  end
+	 
+	  100 - ((count.to_f / images.last.pixels.length.to_f) * 100);
+	end
+	 
+	# find the file
+	def get_screenshot_name(folder, fileName)
+	  foundName = fileName
+	  Dir.foreach('screens/') do |item|
+	  next if item == '.' or item == '..'
+	    if item.start_with? fileName.split('.')[0]
+	      foundName = item
+	    end
+	  end
+	 
+	  foundName
+	end
+	 
+	def setup_comparison(fileName, percentageVariance, forNotCase = false)
+	  screenshotFileName = "compare_#{fileName}"
+	  screenshot({ :prefix => "screens/", :name => screenshotFileName })
+	 
+	  screenshotFileName = get_screenshot_name("screens/", screenshotFileName)
+	  changed = compare_image(fileName, screenshotFileName)
+	  FileUtils.rm("screens/#{screenshotFileName}")
+	 
+	  assert = true
+	  if forNotCase
+	    assert = changed.to_i < percentageVariance
+	  else
+	    assert = changed.to_i > percentageVariance
+	  end
+	 
+	  if assert
+	    fail(msg="Error. The screen shot was different from the source file. Difference: #{changed.to_i}%")
+	  end
+	 
+	end
+	 
+	def setup_comparison_url(url, percentageVariance)
+	  fileName = "tester.png"
+	  open("screens/#{fileName}", 'wb') do |file|
+	    file << open(url).read
+	  end
+	 
+	  setup_comparison(fileName, percentageVariance)
+	  FileUtils.rm("screens/#{fileName}")
+	end
+	 
+	Then(/^I compare the screen with "(.*?)"$/) do |fileName|
+	  setup_comparison(fileName, 0)
+	end
+	 
+	Then(/^I compare the screen with url "(.*?)"$/) do |url|
+	  setup_comparison_url(url, 0)
+	end
+	 
+	Then(/^the screen should not match with "(.*?)"$/) do |fileName|
+	  setup_comparison(fileName, 0, true)
+	end
+	 
+	Then(/^I expect atmost "(.*?)" difference when comparing with "(.*?)"$/) do |percentageVariance, fileName|
+	  setup_comparison(fileName, percentageVariance.to_i)
+	end
+	 
+	Then(/^I expect atmost "(.*?)" difference when comparing with url "(.*?)"$/) do |percentageVariance, url|
+	  setup_comparison_url(url, percentageVariance.to_i)
+	end
+
+If you are using local screen shots, add the source images to a “screens” folder at the same level as the features folder. You will use the name of these images in your test steps.
+
+The following steps are available after injecting the library:
+
+.. code-block:: cucumber
+
+	Then I compare the screen with "login_screen.png"
+	Then I expect atmost "2%" difference when comparing with "login_screen_fail.png"
+	 
+	Then I compare the screen with url "http://testmunk.com/login_screen.png"
+	Then I expect atmost "2%" difference when comparing with url "http://testmunk.com/login_screen_fail.png"
+	 
+	Then the screen should not match with "screen2.png"
+
+You have three different types of steps. One asserts an exact match, another asserts an approximate match (i.e. up to 2%), and the final one reads if the image does not match (asserting if a particular view-changing action has happened or not). You can also use local files (which should be present in the /screens folder) or remotely uploaded files.
+
+If there is a match failure, you will get the percentage difference in the output so you know how much of the screenshot was to the source.
+
+Sources:
+
+- http://jeffkreeftmeijer.com/2011/comparing-images-and-creating-image-diffs/
+
+Note:
+
+- This will work with Calabash iOS as well. However, for games using OpenGL, the screenshot utility of Calabash does not work.

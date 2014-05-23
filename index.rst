@@ -14,4 +14,5 @@ Contents:
    overview
    android
    ios
+   rest
 
