@@ -117,7 +117,7 @@ You should get prompted to resign the app. Follow the terminal instructions to r
 
 	$ calabash-android run TestmunkTest_debug.apk --verbose
 
-After a minute or two the app should get launched on your device and our sample testcases should get executed. It will ca. 3-5 min for the testcases to get completed, you can also exit the terminal to stop the testrun. Simply enter `exit` into the terminal.
+This should install the app on your device, and after a minute or two it should get launched and our sample testcases should get executed. It will ca. 3-5 min for the testcases to get completed, you can also exit the terminal to stop the testrun. Simply enter `exit` into the terminal.
 
 In the following we'd like to show you how you can easily write your own testcase.
 
@@ -130,8 +130,17 @@ Please tap on the app on your device so that it is launched. Open a new terminal
 
 	$ uiautomatorviewer
 
-On the newly opened window, please click on the device icon on the upper left corner to get an actual screenshot from the device.
+.. HINT::
 
+	In case you need to install an `apk` file on your device, you can `cd` into the folder that contains it and use this command:
+
+	.. code-block:: console
+
+		$ adb install NameofTheFile.apk
+
+
+
+On the newly opened window, please click on the device icon on the upper left corner to get an actual screenshot from the device.
 
 .. image:: /_static/img/uiautoss.png
 
