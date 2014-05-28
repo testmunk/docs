@@ -11,8 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 3
 
-   overview
    android
-   ios
-   rest
+..   overview
+..   ios
+..   rest
 
