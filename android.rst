@@ -210,16 +210,99 @@ In order to write a second testcase write a new testscenario. For example:
 
 In case you were wondering where these steps come from, have a look at the `teststep` library. These are all steps that you can be using right away. In case you'd like to extend and write your own steps, have a look into the .rb file in the `step_definitions` folder and the Calabash Ruby API.
 
-Ruby API
---------
+Calabash Ruby API
+-----------------
 
---- there has to be an explanation about the ruby api -- 
+Calabash offers a Ruby API that we support for defining special teststeps.
 
-High level explanation
+A new teststep is defined in the following way:
 
--- detailed explanation --
+.. code-block:: ruby
+	
+	# Define a regular expression to catch the step
+	Then(/^"(.*?)" radio button should be selected$/) do |arg1|
+	  # Use calls to the Calabash API to get information
+	  if(!query("RadioButton text:'#{arg1}'", :checked).first())
+	    # Act on that information
+	    fail("The radio button with text #{arg1} should be selected")
+	  end
+	end
 
-video on how to use the console
+A teststep is considered succesful if the execution of its codeblock runs with neither explicit fails nor uncaught errors.
+
+A nice way to try the different commands on this API is to run the Calabash console and test them.
+
+Useful methods
+~~~~~~~~~~~~~~
+
+This are some useful functions that te Calabash API provides. You can see more about them `on their documentation <https://github.com/calabash/calabash-android/blob/master/documentation/ruby_api.md>`_.
+
+query(uiquery, \*args)
+**********************
+
+Query returns an array with the views on the screen that match it. 
+
+.. code-block:: ruby
+
+	> query("FrameLayout index:0")
+
+	[
+	    [0] {
+	                        "id" => "content",
+	                   "enabled" => true,
+	        "contentDescription" => nil,
+	                     "class" => "android.widget.FrameLayout",
+	                      "rect" => {
+	            "center_y" => 617.0,
+	            "center_x" => 384.0,
+	              "height" => 1134,
+	                   "y" => 50,
+	               "width" => 768,
+	                   "x" => 0
+	        },
+	               "description" => "android.widget.FrameLayout{41f40dc0 V.E..... ........ 0,50-768,1184 #1020002 android:id/content}"
+	    }
+	]
+
+Each result is a Ruby hash map object.
+
+.. code-block:: ruby
+
+	> query("FrameLayout index:0").first.keys
+
+	[
+	    [0] "id",
+	    [1] "enabled",
+	    [2] "contentDescription",
+	    [3] "class",
+	    [4] "rect",
+	    [5] "description"
+	]
+
+	> query("FrameLayout index:0")[0]["id"]
+	
+	"content"
+
+wait_for_elements_exist(elements_arr, options={})
+*************************************************
+
+Waits for all queries in the `elements_arr` array to return results before continuing the test.
+
+.. code-block:: ruby
+
+	wait_for_elements_exist( ["button marked:'OK'", "* marked:'Cancel'"], :timeout => 2)
+
+touch(uiquery, options={})
+**************************
+
+Touches the first result of the query `uiquery`.
+
+.. code-block:: ruby
+
+	touch("FrameLayout index:0")
+	touch(query("FrameLayout"))
+
+.. VIDEO HEREEEEEE on how to use the console
 
 Running testruns
 ----------------
