@@ -4263,6 +4263,9 @@ nav.stickynav {
   margin: auto;
   display: block;
 }
+.rst-content h1, .rst-content h2, .rst-content h3, .rst-content h4, .rst-content h5, .rst-content h6, .rst-content dl dt {
+  margin-top: 51px;
+}
 .rst-content h1 .headerlink, .rst-content h2 .headerlink, .rst-content h3 .headerlink, .rst-content h4 .headerlink, .rst-content h5 .headerlink, .rst-content h6 .headerlink, .rst-content dl dt .headerlink {
   display: none;
   visibility: hidden;

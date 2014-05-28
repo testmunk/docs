@@ -48,7 +48,8 @@ $( document ).ready(function() {
     // Clicking the title shows the body of the admonition
     $(".admonition").click(toggleAdmBody);
 
-
+    // Make all external links open in a new window
+    $("a.reference.external").attr("target", "_blank")
 
 });
 
