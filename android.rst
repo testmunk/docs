@@ -22,9 +22,9 @@ In case you don't have the right permissions, please execute:
 	$ sudo gem install calabash-android
 
 .. HINT::
-	What is calabash?
-
 	Calabash is a framework that allows you to write automated mobile application tests for iOS and Android. It provides APIs for mimicking input to the devices, and reading its output.
+
+	What is calabash?
 
 .. DANGER:: 
 	If you are getting an error that says "clang: error: unknown argument: '-multiply_definedsuppress'", you must run these 2 commands instead:
@@ -36,6 +36,8 @@ In case you don't have the right permissions, please execute:
 		$ ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future gem install calabash-android
 
 	This error is due to deprecated arguments for the `clang` executable that `gem` calls when installing certain extensions.
+
+	'clang error'
 
 Download and Install Android SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,8 +59,6 @@ The Bash profile .bash_profile is a hidden file in your personal folder that you
 After you have configured your bash profile, please close all terminal windows to affect your changes.
 
 .. HINT::
-	What is a .bash_profile? Where can I find it?
-
 	.bash_profile is a shell script that gets executed every time you open a new Terminal window. It deals with configuration for all of your Terminal commands. It can be found in your user folder, `~/`.
 
 	Take into account that this file might not exist; in that case, create a new empty one.
@@ -76,6 +76,8 @@ After you have configured your bash profile, please close all terminal windows t
 
 		$ defaults write com.apple.Finder AppleShowAllFiles TRUE
 		$ killall Finder
+
+	What is a .bash_profile? Where can I find it?
 
 Plug in your Android device
 
@@ -112,6 +114,8 @@ After you have downloaded the files open a new terminal window and navigate via 
 
 		$ calabash-android run TestmunkTest_debug.apk
 
+	No keystores found
+
 
 You should get prompted to resign the app. Follow the terminal instructions to resign the app. After resigning please again execute:
 
@@ -140,7 +144,7 @@ Please tap on the app on your device so that it is launched. Open a new terminal
 
 		$ adb install NameofTheFile.apk
 
-
+	Installing APKs
 
 On the newly opened window, please click on the device icon on the upper left corner to get an actual screenshot from the device.
 
@@ -150,6 +154,8 @@ This inspection is important to identify the right elements that you later will 
 
 .. IMPORTANT::
 	If you use an Android version lower than API level 18 / Jelly Bean you will not be able to interact with the `resource-id` of the element.
+
+	Early versions of Android
 
 .. VIDEO HEREEE
 
@@ -207,6 +213,8 @@ In order to write a second testcase write a new testscenario. For example:
 
 .. HINT::
 	For writing testcases, we recommend using `Sublime Text 2 <http://www.sublimetext.com/>`_ with the `Cucumber syntax highlighting plugin <http://makandracards.com/ninjaconcept/9233-how-to-use-cucumber-together-with-sublime-text-2-editor>`_.
+
+	Text editor suggestion
 
 In case you were wondering where these steps come from, have a look at the `teststep` library. These are all steps that you can be using right away. In case you'd like to extend and write your own steps, have a look into the .rb file in the `step_definitions` folder and the Calabash Ruby API.
 

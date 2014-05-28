@@ -38,6 +38,13 @@ $( document ).ready(function() {
     // Make the danger admonition display troubleshooting instead
     $(".admonition.danger").children(".first").html("Troubleshooting")
 
+    //Copies the last paragraph of an admonition to it's title and deletes it
+    $("div.admonition").each(function(){
+        var title = $(this).children(".last").html();
+        $(this).children(".admonition-title").append( ": " + title );
+        $(this).children(".last").remove();
+    });
+
     // Add chevron to the right of the admonitions' title bar
     $(".admonition-title").append('<i class="fa ' + showMark + '" style="align-content:' +
         ' right;position: inherit;float: right;"></i>');
