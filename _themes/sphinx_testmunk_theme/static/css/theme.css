@@ -4160,7 +4160,7 @@ nav.stickynav {
 }
 .rst-content img {
   max-width: 100%;
-  height: auto !important;
+  height: auto;
 }
 .rst-content div.figure {
   margin-bottom: 24px;

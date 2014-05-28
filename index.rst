@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 3
 
    android
+   steps
 ..   overview
 ..   ios
 ..   rest
