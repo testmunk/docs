@@ -24,6 +24,8 @@ In case you don't have the right permissions, please execute:
 .. HINT::
 	What is calabash?
 
+	Calabash is a framework that allows you to write automated mobile application tests for iOS and Android. It provides APIs for mimicking input to the devices, and reading its output.
+
 .. DANGER:: 
 	If you are getting an error that says "clang: error: unknown argument: '-multiply_definedsuppress'", you must run these 2 commands instead:
 
@@ -151,7 +153,7 @@ This inspection is important to identify the right elements that you later will 
 
 .. VIDEO HEREEE
 
-A more advanced way of inspecting elements on the view is using the console. While your app is running on the device, open a new terminal window and enter:
+A more advanced way of inspecting elements on the view is using the console. Open a new terminal window, `cd` into the folder that contains your `apk` file, and enter:
 
 .. code-block:: console
  
