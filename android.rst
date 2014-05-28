@@ -319,6 +319,7 @@ General
 ~~~~~~~
 
 Testmunk Android enables you to run your testcases on:
+
  1. the virtual emulator
  2. on your plugged in Android device
  3. on a variety of Android devices with different OS versions in the testmunk device lab.
