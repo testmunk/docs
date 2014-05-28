@@ -72,7 +72,7 @@ You should see output similar to the following, which confirmes that your device
 
 In case you don't see any output please confirm that you activated the "USB debugging" mode for your device. You can activate it by going to "Settings".
 
-VIDEO HEREEEEEEE
+.. VIDEO HEREEEEEEE
 
 Writing testcases
 -----------------
@@ -122,7 +122,7 @@ This inspection is important to identify the right elements that you later will 
 .. IMPORTANT::
 	If you use an Android version lower than API level 18 / Jelly Bean you will not be able to interact with the `resource-id` of the element.
 
-VIDEO HEREEE
+.. VIDEO HEREEE
 
 A more advanced way of inspecting elements on the view is using the console. While your app is running on the device, open a new terminal window and enter:
 
@@ -136,7 +136,7 @@ and then enter these commands:
  
 	> start_test_server_in_background
 
-	> query "android.view.View"
+	> query ("*")
  
 You should see all elements on the view.
 
@@ -205,7 +205,7 @@ Running locally on the emulator
 
 Go to applications and start "Eclipse". In the menu bar click click on `Window > Android Virtual Device Manager` and create an emulator you want to test on.
 
-VIDEO HEREEEEEE
+.. VIDEO HEREEEEEE
 
 Running on your local device
 ----------------------------
@@ -220,12 +220,12 @@ In order to run your tests on your device, please navigate via `cd` to your proj
  
 Your testrun should get executed on your device. It's important that you use an apk file that is in debug mode.
 
-Running on multiple android devices
+Running on multiple Android devices
 -----------------------------------
 
 In order to run your testcases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your apk file and testcases.
 
-VIDEO HEREEEEE
+.. VIDEO HEREEEEE
 
 Image Comparison in Calabash
 ----------------------------
