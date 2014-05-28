@@ -243,7 +243,7 @@ A nice way to try the different commands on this API is to run the Calabash cons
 Useful methods
 ~~~~~~~~~~~~~~
 
-This are some useful functions that te Calabash API provides. You can see more about them `on their documentation <https://github.com/calabash/calabash-android/blob/master/documentation/ruby_api.md>`_.
+This are some useful functions that the Calabash API provides. You can see more about them on the `Calabash GitHub documentation <https://github.com/calabash/calabash-android/blob/master/documentation/ruby_api.md>`_.
 
 query(uiquery, \*args)
 **********************
