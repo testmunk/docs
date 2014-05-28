@@ -55,7 +55,25 @@ The Bash profile .bash_profile is a hidden file in your personal folder that you
 After you have configured your bash profile, please close all terminal windows to affect your changes.
 
 .. HINT::
-	What is a .bash_profile?
+	What is a .bash_profile? Where can I find it?
+
+	.bash_profile is a shell script that gets executed every time you open a new Terminal window. It deals with configuration for all of your Terminal commands. It can be found in your user folder, `~/`.
+
+	Take into account that this file might not exist; in that case, create a new empty one.
+
+	Also consider that, since the filename begins with a period, this file is hidden. In order to see hidden files in a Finder window, run these commands in OS X Mavericks:
+
+	.. code-block:: console
+
+		$ defaults write com.apple.finder AppleShowAllFiles TRUE
+		$ killall Finder
+
+	or these commands in OS X versions prior to Mavericks:
+
+	.. code-block:: console
+
+		$ defaults write com.apple.Finder AppleShowAllFiles TRUE
+		$ killall Finder
 
 Plug in your Android device
 
@@ -74,8 +92,8 @@ In case you don't see any output please confirm that you activated the "USB debu
 
 .. VIDEO HEREEEEEEE
 
-Writing testcases
------------------
+Preparing testcases
+-------------------
 
 After you have downloaded the files open a new terminal window and navigate via cd to the TestmunkAndroidDemo folder that you just downloaded. Then execute:
 
@@ -176,6 +194,9 @@ In order to write a second testcase write a new testscenario. For example:
 		Then I press the "See details" button
 		Then I should not see "Something"
 
+.. HINT::
+	For writing testcases, we recommend using `Sublime Text 2 <http://www.sublimetext.com/>`_ with the `Cucumber syntax highlighting plugin <http://makandracards.com/ninjaconcept/9233-how-to-use-cucumber-together-with-sublime-text-2-editor>`_.
+
 In case you were wondering where these steps come from, have a look at the `teststep` library. These are all steps that you can be using right away. In case you'd like to extend and write your own steps, have a look into the .rb file in the `step_definitions` folder and the Calabash Ruby API.
 
 Ruby API
@@ -201,14 +222,14 @@ Testmunk Android enables you to run your testcases on:
  3. on a variety of Android devices with different OS versions in the testmunk device lab.
 
 Running locally on the emulator
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Go to applications and start "Eclipse". In the menu bar click click on `Window > Android Virtual Device Manager` and create an emulator you want to test on.
 
 .. VIDEO HEREEEEEE
 
 Running on your local device
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ensure that your device is being recognised by starting a terminal window and executing adb devices.
  
@@ -221,7 +242,7 @@ In order to run your tests on your device, please navigate via `cd` to your proj
 Your testrun should get executed on your device. It's important that you use an apk file that is in debug mode.
 
 Running on multiple Android devices
------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to run your testcases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your apk file and testcases.
 

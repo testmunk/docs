@@ -3023,6 +3023,8 @@ select[disabled], textarea[disabled], input[readonly], select[readonly], textare
 
 .wy-table td p, .rst-content table.docutils td p, .rst-content table.field-list td p {
   line-height: 18px;
+}
+.wy-table td p:last-child, .rst-content table.docutils td p:last-child, .rst-content table.field-list td p:last-child {
   margin-bottom: 0;
 }
 
@@ -4200,10 +4202,10 @@ nav.stickynav {
   background: #e4f2fb;
 }
 .rst-content .hint .wy-alert-title, .rst-content .hint .admonition-title, .rst-content .tip .wy-alert-title, .rst-content .tip .admonition-title, .rst-content .important .wy-alert-title, .rst-content .important .admonition-title {
-  background: #62b1e4;
+  background: #8dc6ec;
 }
 .rst-content .hint .wy-alert-title:hover, .rst-content .hint .admonition-title:hover, .rst-content .tip .wy-alert-title:hover, .rst-content .tip .admonition-title:hover, .rst-content .important .wy-alert-title:hover, .rst-content .important .admonition-title:hover {
-  background: #369bdd;
+  background: #62b1e4;
 }
 .rst-content .error, .rst-content .danger {
   background: #fcf3d0;
