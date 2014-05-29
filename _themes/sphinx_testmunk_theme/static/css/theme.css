@@ -3737,6 +3737,10 @@ div[class^='highlight'] pre {
 .wy-menu-vertical li.current a:hover {
   background: #d6d6d6;
 }
+.wy-menu-vertical li.current a.nav-active {
+  background: #62b1e4;
+  color: white;
+}
 .wy-menu-vertical li.on a, .wy-menu-vertical li.current > a {
   color: #404040;
   padding: 0.4045em 1.618em;
