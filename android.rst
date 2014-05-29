@@ -35,7 +35,7 @@ In case you don't have the right permissions, please execute:
 
 		$ ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future gem install calabash-android
 
-	This error is due to deprecated arguments for the `clang` executable that `gem` calls when installing certain extensions.
+	This error is due to deprecated arguments for the ``clang`` executable that ``gem`` calls when installing certain extensions.
 
 	'clang error'
 
@@ -46,7 +46,7 @@ The Android SDK is the essential tool to build Android apps; by downloading it y
 
 `Download the latest Android SDK <https://developer.android.com/sdk/index.html>`_
 
-After your download please copy paste both folders (sdk and eclipse) into your Applications folder.
+After your download please copy paste both folders (``sdk`` and ``eclipse``) into your Applications folder.
 
 Configure Bash profile
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +59,7 @@ The Bash profile .bash_profile is a hidden file in your personal folder that you
 After you have configured your bash profile, please close all terminal windows to affect your changes.
 
 .. HINT::
-	.bash_profile is a shell script that gets executed every time you open a new Terminal window. It deals with configuration for all of your Terminal commands. It can be found in your user folder, `~/`.
+	.bash_profile is a shell script that gets executed every time you open a new Terminal window. It deals with configuration for all of your Terminal commands. It can be found in your user folder, ``~/``.
 
 	Take into account that this file might not exist; in that case, create a new empty one.
 
@@ -123,7 +123,7 @@ You should get prompted to resign the app. Follow the terminal instructions to r
 
 	$ calabash-android run TestmunkTest_debug.apk --verbose
 
-This should install the app on your device, and after a minute or two it should get launched and our sample testcases should get executed. It will ca. 3-5 min for the testcases to get completed, you can also exit the terminal to stop the testrun. Simply enter `exit` into the terminal.
+This should install the app on your device, and after a minute or two it should get launched and our sample testcases should get executed. It will ca. 3-5 min for the testcases to get completed, you can also exit the terminal to stop the testrun. Simply enter ``exit`` into the terminal.
 
 In the following we'd like to show you how you can easily write your own testcase.
 
@@ -138,7 +138,7 @@ Please tap on the app on your device so that it is launched. Open a new terminal
 
 .. HINT::
 
-	In case you need to install an `apk` file on your device, you can `cd` into the folder that contains it and use this command:
+	In case you need to install an ``APK`` file on your device, you can ``cd`` into the folder that contains it and use this command:
 
 	.. code-block:: console
 
@@ -150,16 +150,16 @@ On the newly opened window, please click on the device icon on the upper left co
 
 .. image:: /_static/img/uiautoss.png
 
-This inspection is important to identify the right elements that you later will need for your testcases. For example the `resource_id` is needed when you use the teststep `Then I touch view with id...`. 
+This inspection is important to identify the right elements that you later will need for your testcases. For example the ``resource_id`` is needed when you use the teststep ``Then I touch view with id...``. 
 
 .. IMPORTANT::
-	If you use an Android version lower than API level 18 / Jelly Bean you will not be able to interact with the `resource-id` of the element.
+	If you use an Android version lower than API level 18 / Jelly Bean you will not be able to interact with the ``resource-id`` of the element.
 
 	Early versions of Android
 
 .. VIDEO HEREEE
 
-A more advanced way of inspecting elements on the view is using the console. Open a new terminal window, `cd` into the folder that contains your `apk` file, and enter:
+A more advanced way of inspecting elements on the view is using the console. Open a new terminal window, ``cd`` into the folder that contains your ``APK`` file, and enter:
 
 .. code-block:: console
  
@@ -178,7 +178,7 @@ You should see all elements on the view.
 Writing testcases
 ~~~~~~~~~~~~~~~~~
 
-Within the sample app that you just downloaded, please open the `my_first.feature` file within the `feature` folder. These are some sample testcases that we scripted for a demo application. One testcase looks like this:
+Within the sample app that you just downloaded, please open the ``my_first.feature`` file within the ``feature`` folder. These are some sample testcases that we scripted for a demo application. One testcase looks like this:
 
 .. code-block:: cucumber
 
@@ -216,7 +216,7 @@ In order to write a second testcase write a new testscenario. For example:
 
 	Text editor suggestion
 
-In case you were wondering where these steps come from, have a look at the `teststep` library. These are all steps that you can be using right away. In case you'd like to extend and write your own steps, have a look into the .rb file in the `step_definitions` folder and the Calabash Ruby API.
+In case you were wondering where these steps come from, have a look at the `Teststep library <steps.html>`_. These are all steps that you can be using right away. In case you'd like to extend and write your own steps, have a look into the .rb file in the ``step_definitions`` folder and the Calabash Ruby API.
 
 Calabash Ruby API
 -----------------
@@ -294,7 +294,7 @@ Each result is a Ruby hash map object.
 wait_for_elements_exist(elements_arr, options={})
 *************************************************
 
-Waits for all queries in the `elements_arr` array to return results before continuing the test.
+Waits for all queries in the ``elements_arr`` array to return results before continuing the test.
 
 .. code-block:: ruby
 
@@ -303,7 +303,7 @@ Waits for all queries in the `elements_arr` array to return results before conti
 touch(uiquery, options={})
 **************************
 
-Touches the first result of the query `uiquery`.
+Touches the first result of the query ``uiquery``.
 
 .. code-block:: ruby
 
@@ -336,7 +336,7 @@ Running on your local device
 
 Ensure that your device is being recognised by starting a terminal window and executing adb devices.
  
-In order to run your tests on your device, please navigate via `cd` to your project folder and execute:
+In order to run your tests on your device, please navigate via ``cd`` to your project folder and execute:
 
 .. code-block:: console
  
