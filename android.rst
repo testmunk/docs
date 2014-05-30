@@ -1,7 +1,7 @@
 Android
 =======
 
-Testmunk android enables you to write automated functional testcases that you can run on various android devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write testcases and let them run locally on your emulator and android device as well as on a variety of android devices over the cloud in the testmunk device lab.
+Testmunk Android enables you to write automated functional testcases that you can run on various Android devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write testcases and let them run locally on your emulator and Android device as well as on a variety of Android devices over the cloud in the testmunk device lab.
 
 Installation
 ------------
