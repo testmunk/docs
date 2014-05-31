@@ -19,12 +19,18 @@ Prerequisites
 You must be using a machine with Mac OS X. This machine must also have Xcode with its command line tool, and Ruby installed.
 
 .. HINT::
-	Fill this!
+	Download them from `here <https://itunes.apple.com/us/app/xcode/id497799835>`_!
 
 	How do I install Xcode and its command line tools?
 
 .. HINT::
-	Fill this!
+	Your machine must have at least version 1.8.7 for Ruby to ensure compatibility for the gems we will install in the next section. By default, your Mac OS X 10.8 installation comes with Ruby 1.8.7 installed. You can check your version by running ``ruby -v`` in Terminal. If you still need to upgrade, you can try the following steps:
+
+	1. Start Terminal. This can be found in the Applications folder -> Utilities folder.
+	2. Check if you have RVM. This can be done by typing ``rvm`` into the Terminal and pressing Enter.
+	3. If you do not have RVM, install RVM using the following command in Terminal: ``curl -L get.rvm.io | bash -s``
+	4. If you have RVM, install a newer version of Ruby using the following command: ``rvm install 1.9.3``.
+	5. Once Ruby is installed, you can verify the update using ``ruby -v`` in Terminal.
 
 	How do I install Ruby?
 
@@ -67,10 +73,10 @@ Creating a new build target
 2. Select the project document on the side bar.
 3. Right clic your target in the list of targets. If you do not see the list of targets, you need to press this button '>'. *******TODO******
 4. From the dropdown menu, select "Duplicate".
-5. Rename the new target from "TestmunkDemo copy" to "TestmunkDemo-tm".
+5. Rename the new target from "TestmunkDemo copy" to "TestmunkDemo-tm" by clicking on it and pressing Enter.
 6. Click in the toolbar where it says TestmunkDemo, and from the dropdown menu, select "Manage Schemes".
 7. Rename the new scheme from "TestmunkDemo copy" to "TestmunkDemo-tm" and press OK.
-8. Click on "Build Settings" and set the "Product Name" to "TestmunkDemo-tm"
+8. Click on "Build Settings" and under `Packaging` set the "Product Name" to "TestmunkDemo-tm"
 
 .. HINT::
 	You want to build your app with the Calabash framework only if you are building your app for testing purposes. That is why we are setting up a target specifically for running tests.
@@ -81,9 +87,10 @@ Link the Calabash framework
 ***************************
 
 1. Open terminal and run ``calabash-ios download`` to download the latest ``calabash.framework`` file.
-2. Drag ``calabash.framework`` from its current location to the project's Frameworks folder in Xcode.
-3. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "TestmunkDemo-tm" is the only selected target.
-4. Link "TestmunkTest-tm" to the CFNetwork so that Calabash can communicate with your app and trigger the tests. Select the "TestmunkTest-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, make sure that ``calabash.framework`` is present, and click '+' to add ``CFNetwork.framework``.
+2. Run the command ``open .``.
+3. Drag ``calabash.framework`` from its current location to the project's Frameworks folder in Xcode.
+4. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "TestmunkDemo-tm" is the only selected target.
+5. Select the "TestmunkTest-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, make sure that ``calabash.framework`` is present. Link the CFNetwork framework so that Calabash can communicate with your app, by clicking '+', and selecting ``CFNetwork.framework``.
 
 Configure the bulid target
 **************************
@@ -95,7 +102,7 @@ Configure the bulid target
 Test the configuration
 **********************
 
-Launch your application. You should be getting console output similar to this::
+Build and run your application on the simulator. You should be getting console output similar to this::
 
 	2014-05-30 16:08:07.882 TestmunkDemo-tm[3088:60b] Creating the server: <LPHTTPServer: 0xa0970d0>
 	2014-05-30 16:08:07.883 TestmunkDemo-tm[3088:60b] Calabash iOS server version: CALABASH VERSION: 0.9.169
