@@ -109,5 +109,63 @@ Build and run your application on the simulator. You should be getting console o
 	2014-05-30 16:08:07.889 TestmunkDemo-tm[3088:60b] Started LPHTTP server on port 37265
 	2014-05-30 16:08:08.810 TestmunkDemo-tm[3088:1903] Bonjour Service Published: domain(local.) type(_http._tcp.) name(Calabash Server)
 
+Preparing testcases
+-------------------
+
+After your Xcode project has been set up, and you have ran your app on the simulator for the first time, you are ready to make and run your own testcases.
+
+Inspect app for elements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To be able to test, you need to have a way to reference different elements in your application. 
+
+A more advanced way of inspecting elements on the view is using the Calabash console to see a list of the app's visible elements. Inside the folder you downloaded, go to ``TMSample/`` and run this Terminal command:
+
+.. code-block:: console
+
+	$ calabash-ios console
+	> start_test_server_in_background
+
+This will start our test application in the iOS simulator. then enter:
+
+.. code-block:: console
+ 
+	> query("*")
+
+You should see a list of all visible elements.
+
+Writing testcases
+~~~~~~~~~~~~~~~~~
+
+We have installed a feature folder in your project folder. Inside the folder you downloaded, go to ``TMSample/features/``, and open the ``myfirst.feature`` file to write your testcases. You can ignore the folders step_definitions and support at this point.
+
+The my_first.feature file is structured in the following way:
+
+.. code-block:: cucumber
+
+	# Scenario name
+	Scenario: Login
+	  Given I am on the Welcome Screen # Teststeps
+	  Then I touch the "Email" input field
+	  Then I use the keyboard and type "test@testname.com"
+	  Then I touch the "Password" input field
+	  Then I use the keyboard and type "testmunk"
+	  Then I touch "SIGN IN"
+	  Then I wait
+	  Then I should see "Hello world"
+
+.. HINT::
+	For writing testcases, we recommend using `Sublime Text 2 <http://www.sublimetext.com/>`_ with the `Cucumber syntax highlighting plugin <http://makandracards.com/ninjaconcept/9233-how-to-use-cucumber-together-with-sublime-text-2-editor>`_.
+
+	Text editor suggestion
+
+You can write as many testcases as you want in your ``myfirst.feature`` file. Don’t delete the feature title line, since it is needed for a successful execution of your testcase.
+
+Good to know: Ensure that each testcase starts from the beginning. We call it testcase independency. When you run your app on our devices, we clear the app data before each testcase. So, if your app always starts with the login process, you will need to have teststeps that cover the login process at the beginning of each testcase. Testcase independency makes your testcases more robust, and it means every testcase can be tested independently.
+
+Our teststep library can come in handy as a reference as you’re writing your testcases.
+
+If you run your app over our device lab, we automatically take screenshots after each teststep – you don’t need to worry about it at all.
+
 
 

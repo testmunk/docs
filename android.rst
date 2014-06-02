@@ -171,9 +171,9 @@ and then enter these commands:
  
 	> start_test_server_in_background
 
-	> query ("*")
+	> query("*")
  
-You should see all elements on the view.
+You should see a list of all visible elements.
 
 Writing testcases
 ~~~~~~~~~~~~~~~~~
