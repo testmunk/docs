@@ -117,7 +117,16 @@ After your Xcode project has been set up, and you have ran your app on the simul
 Inspect app for elements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-To be able to test, you need to have a way to reference different elements in your application. 
+Accessibility Inspector
+***********************
+
+To be able to test, you need to have a way to reference different elements in your application. iOS devices have been setting new, improved usability standards for impaired users, since Accessibility functions help them navigate through the app. These Accessibility functions come in very handy for test automation. Test cases become more robust and easier to maintain. You can enable the Accessibility Inspector by starting the Simulator, then going ``Settings -> General`` and setting Accessibility Inspector to ON.
+
+Once the Accessibility Inspector is enabled, you can switch between two modes, inspection and navigation. If the Accessibility Inspector is minimized, then the app is in navigation mode. This means that you can tap on buttons to perform actions.
+
+However, once you click on the X button, the window enlarges – then you are in inspection mode. Now clicking on the button will show its accessibility details.
+
+To go back to the navigation mode, simply click the X again to minimize the Accessibility Inspector.
 
 A more advanced way of inspecting elements on the view is using the Calabash console to see a list of the app's visible elements. Inside the folder you downloaded, go to ``TMSample/`` and run this Terminal command:
 
@@ -167,5 +176,138 @@ Our teststep library can come in handy as a reference as you’re writing your t
 
 If you run your app over our device lab, we automatically take screenshots after each teststep – you don’t need to worry about it at all.
 
+.. VIDEO HEREEEEEE on how to use the console
+
+
+Calabash Ruby API
+-----------------
+
+Calabash offers a Ruby API that we support for defining special teststeps.
+
+A new teststep is defined in the following way:
+
+.. code-block:: ruby
+	
+	# Define a regular expression to catch the step
+	Then(/^"(.*?)" radio button should be selected$/) do |arg1|
+	  # Use calls to the Calabash API to get information
+	  if(!query("RadioButton text:'#{arg1}'", :checked).first())
+	    # Act on that information
+	    fail("The radio button with text #{arg1} should be selected")
+	  end
+	end
+
+A teststep is considered succesful if the execution of its codeblock runs with neither explicit fails nor uncaught errors.
+
+A nice way to try the different commands on this API is to run the Calabash console and test them.
+
+Useful methods
+~~~~~~~~~~~~~~
+
+This are some useful functions that the Calabash API provides. You can see more about them on the `Calabash GitHub documentation <https://github.com/calabash/calabash-ios/wiki/03.5-Calabash-iOS-Ruby-API>`_.
+
+query(uiquery, \*args)
+**********************
+
+Query returns an array with the views on the screen that match it. 
+
+.. code-block:: ruby
+
+	> query("UIButton")
+
+	[
+	    [0] {
+	              "class" => "FUIButton",
+	                 "id" => nil,
+	               "rect" => {
+	            "center_x" => 160,
+	                   "y" => 194,
+	               "width" => 300,
+	                   "x" => 10,
+	            "center_y" => 216,
+	              "height" => 44
+	        },
+	              "frame" => {
+	                 "y" => 194,
+	             "width" => 300,
+	                 "x" => 10,
+	            "height" => 44
+	        },
+	              "label" => "SIGN IN",
+	        "description" => "<FUIButton: 0x9f909e0; baseClass = UIButton; frame = (10 194; 300 44); opaque = NO; layer = <CALayer: 0x9f90bf0>>"
+	    }
+	]
+
+Each result is a Ruby hash map object.
+
+.. code-block:: ruby
+
+	> query("UIButton").first.keys
+
+	[
+	    [0] "class",
+	    [1] "id",
+	    [2] "rect",
+	    [3] "frame",
+	    [4] "label",
+	    [5] "description"
+	]
+
+	> query("UIButton")[0]["label"]
+	
+	"SIGN IN"
+
+
+wait_for_elements_exist(elements_arr, options={})
+*************************************************
+
+Waits for all queries in the ``elements_arr`` array to return results before continuing the test.
+
+.. code-block:: ruby
+
+	wait_for_elements_exist( ["button marked:'OK'", "* marked:'Cancel'"], :timeout => 2)
+
+touch(uiquery, options={})
+**************************
+
+Touches the first result of the query ``uiquery``.
+
+.. code-block:: ruby
+
+	touch("UIButton index:0")
+	touch(query("UIButton"))
+
+
+Running testruns
+----------------
+
+General
+~~~~~~~
+
+Testmunk iOS enables you to run your testcases on:
+
+ 1. the virtual emulator
+ 2. on a variety of iOS devices with different OS versions in the testmunk device lab.
+
+Running locally on the emulator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Inside the folder you downloaded, go to ``TMSample/``, where the Xcode project resides, and run the following command:
+
+.. code-block:: console
+
+	$ cucumber -v
+
+That should initiate the testruns on your simulator.
+
+.. VIDEO HEREEEEEE
+
+
+Running on multiple Android devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to run your testcases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your IPA file and testcases.
+
+.. VIDEO HEREEEEE
 
 
