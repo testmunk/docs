@@ -16,10 +16,14 @@ This section will guide you on how to prepare your environment and Xcode project
 Prerequisites
 ~~~~~~~~~~~~~
 
-You must be using a machine with Mac OS X. This machine must also have Xcode with its command line tool, and Ruby installed.
+You must be using a machine with Mac OS X. This machine must also have Xcode with its command line tools, and Ruby installed.
 
 .. HINT::
-	Download them from `here <https://itunes.apple.com/us/app/xcode/id497799835>`_!
+	Download Xcode from `here <https://itunes.apple.com/us/app/xcode/id497799835>`_. Once you have Xcode installed, run this command in Terminal to install the command-line tools:
+
+	.. code-block:: console
+
+		$ xcode-select --install
 
 	How do I install Xcode and its command line tools?
 
@@ -293,7 +297,7 @@ Testmunk iOS enables you to run your testcases on:
  2. on a variety of iOS devices with different OS versions in the testmunk device lab.
 
 Running locally on the simulator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Inside the folder you downloaded, go to ``TMSample/``, where the Xcode project resides, and run the following command:
 
@@ -303,7 +307,9 @@ Inside the folder you downloaded, go to ``TMSample/``, where the Xcode project r
 
 .. HINT::
 
-The '-v' argument launches Cucumber in `verbose mode`, which means that it will print more detailed information to the console while running. We run it this way to know exactly what went wrong or right with the testing.
+	The ``-v`` argument launches Cucumber in `verbose mode`, which means that it will print more detailed information to the console while running. We run it this way to know exactly what went wrong or right with the testing.
+
+	Why '-v'?
 
 That will initiate the testruns on your simulator.
 
