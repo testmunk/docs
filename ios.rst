@@ -315,13 +315,27 @@ Inside the folder you downloaded, go to ``TMSample/``, where the Xcode project r
 
 	$ cucumber -v
 
+
+That will initiate the testruns on your simulator.
+
 .. HINT::
 
 	The ``-v`` argument launches Cucumber in `verbose mode`, which means that it will print more detailed information to the console while running. We run it this way to know exactly what went wrong or right with the testing.
 
 	Why '-v'?
 
-That will initiate the testruns on your simulator.
+.. DANGER::
+
+	If ``cucumber -v`` dosen’t work, try this fixes one at a time:
+
+	- Make sure Xcode is not executing any projects at the time.
+	- Have only one instance of Xcode open, with the project you are trying to run, and hte scheme you want to build selected.
+	- Have the same version of Calabash in your Terminal tool and the framework you are linking in your project.
+	- Manually run your app on the simulator through Xcode, and then close and stop it.
+	- Choose the `Reset content and settings` option in your iOS simulator.
+
+	Cucumber does not execute correctly
+
 
 .. VIDEO HEREEEEEE
 
