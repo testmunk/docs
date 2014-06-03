@@ -326,15 +326,21 @@ That will initiate the testruns on your simulator.
 
 .. DANGER::
 
+	If you are getting an error that reads ``tool 'xcodebuild' requires Xcode, but active developer directory ...``, then open Xcode, and go to `Xcode > Preferences > Locations` and in the `Command Line Tools` dropdown menu select `Xcode`.
+
+	'xcodebuild' error
+
+.. DANGER::
+
 	If ``cucumber -v`` dosen’t work, try this fixes one at a time:
 
+	- Manually run your app on the simulator through Xcode, and then close and stop it.
 	- Make sure Xcode is not executing any projects at the time.
 	- Have only one instance of Xcode open, with the project you are trying to run, and hte scheme you want to build selected.
 	- Have the same version of Calabash in your Terminal tool and the framework you are linking in your project.
-	- Manually run your app on the simulator through Xcode, and then close and stop it.
 	- Choose the `Reset content and settings` option in your iOS simulator.
 
-	Cucumber does not execute correctly
+	Other errors
 
 
 .. VIDEO HEREEEEEE
