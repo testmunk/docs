@@ -6,7 +6,7 @@ Testmunk iOS enables you to write automated functional testcases that you can ru
 Installation
 ------------
 
-This section will guide you on how to prepare your environment and Xcode project for running Calabash tests on iOS apps locally, and deploy them to testmunk for testing on multiple devices. For this tutorial, we recommend you use `our sample app project <https://github.com/testmunk/TMSample/archive/master.zip>`_.
+This section will guide you on how to prepare your environment and Xcode project for running Calabash tests on iOS apps locally, and deploy them to testmunk for testing on multiple devices. For this tutorial, we recommend you use `our sample app project <https://github.com/testmunk/TMSample/>`_ (just clone the repository or download the ZIP file).
 
 .. HINT::
 	Calabash is a framework that allows you to write automated mobile application tests for iOS and Android. It provides APIs for mimicking input to the devices, and reading its output.
@@ -71,7 +71,10 @@ Creating a new build target
 
 1. Open the testmunk sample project in Xcode.
 2. Select the project document on the side bar.
-3. Right clic your target in the list of targets. If you do not see the list of targets, you need to press this button '>'. *******TODO******
+3. Right click your target in the list of targets. If you do not see the list of targets, you need to press this button:
+
+.. image:: _static/img/sidebarss.png
+
 4. From the dropdown menu, select "Duplicate".
 5. Rename the new target from "TestmunkDemo copy" to "TestmunkDemo-tm" by clicking on it and pressing Enter.
 6. Click in the toolbar where it says TestmunkDemo, and from the dropdown menu, select "Manage Schemes".
@@ -87,7 +90,7 @@ Link the Calabash framework
 ***************************
 
 1. Open terminal and run ``calabash-ios download`` to download the latest ``calabash.framework`` file.
-2. Run the command ``open .``.
+2. Run the command ``open .`` in Terminal.
 3. Drag ``calabash.framework`` from its current location to the project's Frameworks folder in Xcode.
 4. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "TestmunkDemo-tm" is the only selected target.
 5. Select the "TestmunkTest-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, make sure that ``calabash.framework`` is present. Link the CFNetwork framework so that Calabash can communicate with your app, by clicking '+', and selecting ``CFNetwork.framework``.
@@ -303,10 +306,15 @@ That should initiate the testruns on your simulator.
 .. VIDEO HEREEEEEE
 
 
-Running on multiple Android devices
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running on multiple iOS devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In order to run your testcases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your IPA file and testcases.
+
+.. HINT::
+	To export the IPA file for your app, open your Xcode project, make sure to select the "...-tm" scheme and "iOS Device" as your target device. Then, in the title bar and go to `Product > Archive`. In the `Archives` window that pops up, press the `Distribute...` button, select `Save for Enterprise or Ad Hoc Deployment`, choose the Provisioning Profile you sign your app with, and export the file. Leave the `Save for Enterprise Distribution` checkbox unchecked.
+
+	How do I export my IPA file?
 
 .. VIDEO HEREEEEE
 

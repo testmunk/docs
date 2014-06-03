@@ -218,6 +218,8 @@ In order to write a second testcase write a new testscenario. For example:
 
 In case you were wondering where these steps come from, have a look at the `Teststep library <steps.html>`_. These are all steps that you can be using right away. In case you'd like to extend and write your own steps, have a look into the .rb file in the ``step_definitions`` folder and the Calabash Ruby API.
 
+.. VIDEO HEREEEEEE on how to use the console
+
 Calabash Ruby API
 -----------------
 
@@ -309,8 +311,6 @@ Touches the first result of the query ``uiquery``.
 
 	touch("FrameLayout index:0")
 	touch(query("FrameLayout"))
-
-.. VIDEO HEREEEEEE on how to use the console
 
 Running testruns
 ----------------
