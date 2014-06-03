@@ -55,6 +55,16 @@ In case you don't have the right permissions, please execute:
 	$ sudo gem install calabash-cucumber
 
 .. DANGER:: 
+
+	If you get an error that reads ``...can't find header files for ruby at /System/...``, that means you do not have the Xcode command-line tools correctly installed. Make sure you have Xcode installed (or download it `here <https://itunes.apple.com/us/app/xcode/id497799835>`_) and then run this command in Terminal:
+
+	.. code-block:: console
+
+		$ xcode-select --install
+
+	Header files can't be found
+
+.. DANGER:: 
 	If you are getting an error that says "clang: error: unknown argument: '-multiply_definedsuppress'", you must run these 2 commands instead:
 
 	.. code-block:: console
