@@ -1,7 +1,7 @@
 iOS
 ===
 
-Testmunk iOS enables you to write automated functional testcases that you can run on various iOS devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write testcases and let them run locally on your emulator and iOS device as well as on a variety of iOS devices over the cloud in the testmunk device lab.
+Testmunk iOS enables you to write automated functional testcases that you can run on various iOS devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write testcases and let them run locally on your simulator and iOS device as well as on a variety of iOS devices over the cloud in the testmunk device lab.
 
 Installation
 ------------
@@ -70,7 +70,7 @@ Creating a new build target
 ***************************
 
 1. Open the testmunk sample project in Xcode.
-2. Select the project document on the side bar.
+2. Select your project (from the File Navigator).
 3. Right click your target in the list of targets. If you do not see the list of targets, you need to press this button:
 
 .. image:: _static/img/sidebarss.png
@@ -289,10 +289,10 @@ General
 
 Testmunk iOS enables you to run your testcases on:
 
- 1. the virtual emulator
+ 1. the virtual simulator
  2. on a variety of iOS devices with different OS versions in the testmunk device lab.
 
-Running locally on the emulator
+Running locally on the simulator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Inside the folder you downloaded, go to ``TMSample/``, where the Xcode project resides, and run the following command:
@@ -301,7 +301,11 @@ Inside the folder you downloaded, go to ``TMSample/``, where the Xcode project r
 
 	$ cucumber -v
 
-That should initiate the testruns on your simulator.
+.. HINT::
+
+The '-v' argument launches Cucumber in `verbose mode`, which means that it will print more detailed information to the console while running. We run it this way to know exactly what went wrong or right with the testing.
+
+That will initiate the testruns on your simulator.
 
 .. VIDEO HEREEEEEE
 
@@ -315,6 +319,8 @@ In order to run your testcases on testmunk's devices and see a report with your 
 	To export the IPA file for your app, open your Xcode project, make sure to select the "...-tm" scheme and "iOS Device" as your target device. Then, in the title bar and go to `Product > Archive`. In the `Archives` window that pops up, press the `Distribute...` button, select `Save for Enterprise or Ad Hoc Deployment`, choose the Provisioning Profile you sign your app with, and export the file. Leave the `Save for Enterprise Distribution` checkbox unchecked.
 
 	How do I export my IPA file?
+
+.. TODO: Add troubleshooting for sign in issues
 
 .. VIDEO HEREEEEE
 
