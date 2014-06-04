@@ -158,6 +158,32 @@ ul.fas li .fa-large:before {
 .rst-versions.shift-up .rst-other-versions {
   display: block;
 }
+.rst-versions .rst-testmunk-chat {
+  padding: 18px;
+  background-color: #272525;
+  display: block;
+  text-align: center;
+  font-size: 90%;
+  cursor: pointer;
+  color: white;
+  *zoom: 1;
+}
+.rst-versions .rst-testmunk-chat:hover {
+  background-color: #369bdd;
+}
+.rst-versions .rst-testmunk-chat a {
+  color: white;
+}
+.rst-versions .rst-testmunk-chat:before, .rst-versions .rst-testmunk-chat:after {
+  display: table;
+  content: "";
+}
+.rst-versions .rst-testmunk-chat:after {
+  clear: both;
+}
+.rst-versions.shift-up .rst-other-versions {
+  display: block;
+}
 .rst-versions .rst-other-versions {
   font-size: 90%;
   padding: 12px;

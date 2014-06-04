@@ -3667,6 +3667,10 @@ div[class^='highlight'] pre {
     display: none;
   }
 }
+.injected {
+  display: none;
+}
+
 .wy-affix {
   position: fixed;
   top: 1.618em;
@@ -4095,6 +4099,32 @@ nav.stickynav {
 .rst-versions .rst-current-version.rst-active-old-version {
   background-color: #f1c40f;
   color: black;
+}
+.rst-versions.shift-up .rst-other-versions {
+  display: block;
+}
+.rst-versions .rst-testmunk-chat {
+  padding: 18px;
+  background-color: #272525;
+  display: block;
+  text-align: center;
+  font-size: 90%;
+  cursor: pointer;
+  color: white;
+  *zoom: 1;
+}
+.rst-versions .rst-testmunk-chat:hover {
+  background-color: #369bdd;
+}
+.rst-versions .rst-testmunk-chat a {
+  color: white;
+}
+.rst-versions .rst-testmunk-chat:before, .rst-versions .rst-testmunk-chat:after {
+  display: table;
+  content: "";
+}
+.rst-versions .rst-testmunk-chat:after {
+  clear: both;
 }
 .rst-versions.shift-up .rst-other-versions {
   display: block;
