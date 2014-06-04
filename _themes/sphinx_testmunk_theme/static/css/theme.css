@@ -4057,14 +4057,20 @@ nav.stickynav {
   display: none;
 }
 .rst-versions .rst-current-version {
-  padding: 12px;
+  padding: 18px;
   background-color: #272525;
   display: block;
-  text-align: right;
+  text-align: center;
   font-size: 90%;
   cursor: pointer;
-  color: #27ae60;
+  color: white;
   *zoom: 1;
+}
+.rst-versions .rst-current-version:hover {
+  background-color: #369bdd;
+}
+.rst-versions .rst-current-version a {
+  color: white;
 }
 .rst-versions .rst-current-version:before, .rst-versions .rst-current-version:after {
   display: table;
