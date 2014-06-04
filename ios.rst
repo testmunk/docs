@@ -160,6 +160,53 @@ This will start our test application in the iOS simulator. then enter:
 
 You should see a list of all visible elements.
 
+.. code-block :: ruby
+
+	[
+	    [ 0] {
+	              "class" => "UIWindow",
+	                 "id" => nil,
+	               "rect" => {
+	            "center_x" => 160,
+	                   "y" => 0,
+	               "width" => 320,
+	                   "x" => 0,
+	            "center_y" => 284,
+	              "height" => 568
+	        },
+	              "frame" => {
+	                 "y" => 0,
+	             "width" => 320,
+	                 "x" => 0,
+	            "height" => 568
+	        },
+	              "label" => nil,
+	        "description" => "<UIWindow: 0xb26fc60; frame = (0 0; 320 568); gestureRecognizers = <NSArray: 0xb2723a0>; layer = <UIWindowLayer: 0xb271d50>>"
+	    },
+	    [ 1] {
+	              "class" => "UIView",
+	                 "id" => nil,
+	               "rect" => {
+	            "center_x" => 160,
+	                   "y" => 0,
+	               "width" => 320,
+	                   "x" => 0,
+	            "center_y" => 284,
+	              "height" => 568
+	        },
+	              "frame" => {
+	                 "y" => 0,
+	             "width" => 320,
+	                 "x" => 0,
+	            "height" => 568
+	        },
+	              "label" => nil,
+	        "description" => "<UIView: 0x9eb3610; frame = (0 0; 320 568); autoresize = RM+BM; layer = <CALayer: 0x9eb37e0>>"
+	    },
+	    ...
+
+	]
+
 Writing testcases
 ~~~~~~~~~~~~~~~~~
 
