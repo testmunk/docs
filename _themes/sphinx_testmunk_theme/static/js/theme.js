@@ -18,7 +18,21 @@ function toggleAdmBody() {
     }
 }
 
+// Hides the screenshot that calls the function
+function hideSS() {
+    var imgLink = $(this).attr("src");
+    $(this).replaceWith("<a class='collapsedImg' imgsrc='" + imgLink + "' onclick='$(this).each(showSS);'>See screenshot</a>");
+}
+
+// Shows the screenshot that calls the function
+function showSS() {
+    var imgLink = $(this).attr("imgsrc");
+    $(this).replaceWith("<img alt='" + imgLink + "' src='" + imgLink + "' onclick='$(this).each(hideSS);'>");
+}
+
+
 $( document ).ready(function() {
+
     // Shift nav in mobile when clicking the menu.
     $(document).on('click', "[data-toggle='wy-nav-top']", function() {
       $("[data-toggle='wy-nav-shift']").toggleClass("shift");
@@ -58,6 +72,8 @@ $( document ).ready(function() {
     // Make all external links open in a new window
     $("a.reference.external").attr("target", "_blank")
 
+    // Initialize image expanding and retracting
+    $(".rst-content img").each(hideSS);
 
 
     /**

@@ -163,7 +163,7 @@ ul.fas li .fa-large:before {
   background-color: #272525;
   display: block;
   text-align: center;
-  font-size: 90%;
+  font-size: 100%;
   cursor: pointer;
   color: white;
   *zoom: 1;
@@ -180,6 +180,9 @@ ul.fas li .fa-large:before {
 }
 .rst-versions .rst-testmunk-chat:after {
   clear: both;
+}
+.rst-versions .rst-testmunk-chat .fa-comments-o {
+  margin-right: 7px;
 }
 .rst-versions.shift-up .rst-other-versions {
   display: block;

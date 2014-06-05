@@ -4108,7 +4108,7 @@ nav.stickynav {
   background-color: #272525;
   display: block;
   text-align: center;
-  font-size: 90%;
+  font-size: 100%;
   cursor: pointer;
   color: white;
   *zoom: 1;
@@ -4125,6 +4125,9 @@ nav.stickynav {
 }
 .rst-versions .rst-testmunk-chat:after {
   clear: both;
+}
+.rst-versions .rst-testmunk-chat .fa-comments-o {
+  margin-right: 7px;
 }
 .rst-versions.shift-up .rst-other-versions {
   display: block;
