@@ -3671,6 +3671,11 @@ div[class^='highlight'] pre {
   display: none;
 }
 
+.collapsedImg {
+  display: block;
+  margin-bottom: 24px;
+}
+
 .wy-affix {
   position: fixed;
   top: 1.618em;
