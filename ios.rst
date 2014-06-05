@@ -90,10 +90,19 @@ Creating a new build target
 .. image:: _static/img/sidebarss.png
 
 4. From the dropdown menu, select "Duplicate".
+
+.. image:: _static/img/ss00.png
+
 5. Rename the new target from "TestmunkDemo copy" to "TestmunkDemo-tm" by clicking on it and pressing Enter.
 6. Click in the toolbar where it says TestmunkDemo, and from the dropdown menu, select "Manage Schemes".
-7. Rename the new scheme from "TestmunkDemo copy" to "TestmunkDemo-tm" and press OK.
+
+.. image:: _static/img/ss01.png
+
+7. Rename the new scheme from "TestmunkDemo copy" to "TestmunkDemo-tm" by clicking on it and pressing Enter. Then press OK.
 8. Click on "Build Settings" and under `Packaging` set the "Product Name" to "TestmunkDemo-tm"
+
+.. image:: _static/img/ss02.png
+
 
 .. HINT::
 	You want to build your app with the Calabash framework only if you are building your app for testing purposes. That is why we are setting up a target specifically for running tests.
@@ -106,8 +115,17 @@ Link the Calabash framework
 1. Open terminal and run ``calabash-ios download`` to download the latest ``calabash.framework`` file.
 2. Run the command ``open .`` in Terminal.
 3. Drag ``calabash.framework`` from its current location to the project's Frameworks folder in Xcode.
+
+.. image:: _static/img/ss03.png
+
 4. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "TestmunkDemo-tm" is the only selected target.
-5. Select the "TestmunkTest-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, make sure that ``calabash.framework`` is present. Link the CFNetwork framework so that Calabash can communicate with your app, by clicking '+', and selecting ``CFNetwork.framework``.
+5. Select the "TestmunkDemo-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, make sure that ``calabash.framework`` is present. Link the CFNetwork framework so that Calabash can communicate with your app, by clicking '+', and selecting ``CFNetwork.framework``.
+
+.. image:: _static/img/ss04.png
+
+
+.. image:: _static/img/ss05.png
+
 
 Configure the bulid target
 **************************
@@ -115,6 +133,9 @@ Configure the bulid target
 1. Select "Build Settings"
 2. Change the filter from "Basic" to "All"
 3. Make sure that "Other Linker Flags" contains: ``-force_load "$(SRCROOT)/calabash.framework/calabash" -lstdc++``
+
+.. image:: _static/img/ss06.png
+
 
 Test the configuration
 **********************
