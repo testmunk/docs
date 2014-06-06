@@ -134,7 +134,7 @@ Link the Calabash framework
 	:alt: Screenshot
 
 
-Configure the bulid target
+Configure the build target
 **************************
 
 1. Select "Build Settings"
