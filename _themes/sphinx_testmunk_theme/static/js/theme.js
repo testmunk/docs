@@ -20,8 +20,10 @@ function toggleAdmBody() {
 
 // Hides the screenshot that calls the function
 function hideSS() {
-    var imgLink = $(this).attr("src");
-    $(this).replaceWith("<a class='collapsedImg' imgsrc='" + imgLink + "' onclick='$(this).each(showSS);'>See screenshot</a>");
+    if ($(this).attr("alt") == "Screenshot") {
+        var imgLink = $(this).attr("src");
+        $(this).replaceWith("<a class='collapsedImg' imgsrc='" + imgLink + "' onclick='$(this).each(showSS);'>See screenshot</a>");
+    }
 }
 
 // Shows the screenshot that calls the function
