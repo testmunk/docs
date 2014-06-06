@@ -88,20 +88,24 @@ Creating a new build target
 3. Right click your target in the list of targets. If you do not see the list of targets, you need to press this button:
 
 .. image:: _static/img/sidebarss.png
+	:alt: Screenshot
 
 4. From the dropdown menu, select "Duplicate".
 
 .. image:: _static/img/ss00.png
+	:alt: Screenshot
 
 5. Rename the new target from "TestmunkDemo copy" to "TestmunkDemo-tm" by clicking on it and pressing Enter.
 6. Click in the toolbar where it says TestmunkDemo, and from the dropdown menu, select "Manage Schemes".
 
 .. image:: _static/img/ss01.png
+	:alt: Screenshot
 
 7. Rename the new scheme from "TestmunkDemo copy" to "TestmunkDemo-tm" by clicking on it and pressing Enter. Then press OK.
 8. Click on "Build Settings" and under `Packaging` set the "Product Name" to "TestmunkDemo-tm"
 
 .. image:: _static/img/ss02.png
+	:alt: Screenshot
 
 
 .. HINT::
@@ -117,14 +121,17 @@ Link the Calabash framework
 3. Drag ``calabash.framework`` from its current location to the project's Frameworks folder in Xcode.
 
 .. image:: _static/img/ss03.png
+	:alt: Screenshot
 
 4. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "TestmunkDemo-tm" is the only selected target.
 5. Select the "TestmunkDemo-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, make sure that ``calabash.framework`` is present. Link the CFNetwork framework so that Calabash can communicate with your app, by clicking '+', and selecting ``CFNetwork.framework``.
 
 .. image:: _static/img/ss04.png
+	:alt: Screenshot
 
 
 .. image:: _static/img/ss05.png
+	:alt: Screenshot
 
 
 Configure the bulid target
@@ -135,6 +142,7 @@ Configure the bulid target
 3. Make sure that "Other Linker Flags" contains: ``-force_load "$(SRCROOT)/calabash.framework/calabash" -lstdc++``
 
 .. image:: _static/img/ss06.png
+	:alt: Screenshot
 
 
 Test the configuration
