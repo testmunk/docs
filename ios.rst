@@ -474,19 +474,24 @@ First, download the updated Ruby gem by running:
 
 	$ gem install calabash-cucumber
 
-Then, go to the directory you want to store the updated framework in, and run:
-
-.. code-block:: console
-
-	$ calabash-ios download
-	$ open .
-
 Then, for each Xcode project containing a build target with the Calabash framework, do this:
 
-1. Open the project.
-2. Press Shift + Option + Command + K to clean your Xcode project.
-3. Delete the app from any iOS devices or simulators that have it.
-4. Select the "...-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, select ``calabash.framework`` from the list and click on the '-' button to remove it from the target.
-5. Drag the newly downloaded ``calabash.framework`` file from its current location to the project's Frameworks folder in Xcode.
-6. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "...-tm" is the only selected target.
-7. Go through the commands in the "Check the version of Calabash you have installed" section above to make sure your framework was properly updated.
+1.  In Terminal, ``cd`` into the folder that contains the ``calabash.framework`` file, and run this command:
+
+.. code-block:: console
+	
+	$ calabash-ios download
+
+2. Open the project in Xcode.
+3. Press Shift + Option + Command + K to clean your Xcode project.
+4. Delete the app from any iOS devices or simulators that have it.
+5. Rebuild your app.
+6. Go through the commands in the "Check the version of Calabash you have installed" section above to make sure your framework was properly updated.
+
+.. HINT::
+
+	You can also check the verison of your app's Calabash framework by looking at the console output in Xcode.
+
+	.. image:: _static/img/ss07.png
+
+	Alternative method for checking framework version
