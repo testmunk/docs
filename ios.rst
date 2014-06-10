@@ -432,8 +432,61 @@ In order to run your testcases on testmunk's devices and see a report with your 
 
 	How do I export my IPA file?
 
-.. TODO: Add troubleshooting for sign in issues
+.. TODO: Add troubleshooting for certificate signing issues
 
 .. VIDEO HEREEEEE
 
+Updating Calabash
+-----------------
 
+For your tests to run in both your machine and the Testmunk servers, you need to have the same version of Calabash as we do. You can achieve this by updating your Calabash installation.
+
+In order for your tests to run, you need to have the same version of Calabash in both the Calabash Ruby gem and the Objective-C framework you link with the "...-tm" build of your iOS application.
+
+Check the version of Calabash you have installed
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ruby gem version
+****************
+
+Run this command on your Terminal:
+
+.. code-block:: console
+
+	$ calabash-ios version
+
+Framework version
+*****************
+
+Run in the simulator the app for which you want to check the version, and then run this commands in Terminal:
+
+.. code-block:: console
+
+	$ calabash-ios console # this opens the Calabash console
+	> server_version['version'] # this queries the Calabash server running in your application for its version
+
+Update process
+~~~~~~~~~~~~~~
+
+First, download the updated Ruby gem by running:
+
+.. code-block:: console
+
+	$ gem install calabash-cucumber
+
+Then, go to the directory you want to store the updated framework in, and run:
+
+.. code-block:: console
+
+	$ calabash-ios download
+	$ open .
+
+Then, for each Xcode project containing a build target with the Calabash framework, do this:
+
+1. Open the project.
+2. Press Shift + Option + Command + K to clean your Xcode project.
+3. Delete the app from any iOS devices or simulators that have it.
+4. Select the "...-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, select ``calabash.framework`` from the list and click on the '-' button to remove it from the target.
+5. Drag the newly downloaded ``calabash.framework`` file from its current location to the project's Frameworks folder in Xcode.
+6. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "TestmunkDemo-tm" is the only selected target.
+7. Go through the commands in the "Check the version of Calabash you have installed" section above to make sure your framework was properly updated.
