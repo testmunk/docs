@@ -439,7 +439,7 @@ In order to run your testcases on testmunk's devices and see a report with your 
 Updating Calabash
 -----------------
 
-For your tests to run in both your machine and the Testmunk servers, you need to have the same version of Calabash as we do. You can achieve this by updating your Calabash installation.
+For your tests to run in both your machine and the Testmunk servers, you need to have the same version of Calabash as we do (currently it is ``0.9.169``). You can achieve this by updating your Calabash installation.
 
 In order for your tests to run, you need to have the same version of Calabash in both the Calabash Ruby gem and the Objective-C framework you link with the "...-tm" build of your iOS application.
 
