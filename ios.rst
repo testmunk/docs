@@ -488,5 +488,5 @@ Then, for each Xcode project containing a build target with the Calabash framewo
 3. Delete the app from any iOS devices or simulators that have it.
 4. Select the "...-tm" target, go to "Build Phases", and in the "Link Binary With Libraries" section, select ``calabash.framework`` from the list and click on the '-' button to remove it from the target.
 5. Drag the newly downloaded ``calabash.framework`` file from its current location to the project's Frameworks folder in Xcode.
-6. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "TestmunkDemo-tm" is the only selected target.
+6. In the pop up window that appears, select `Copy items into destination group's folder (if needed)` and make sure "...-tm" is the only selected target.
 7. Go through the commands in the "Check the version of Calabash you have installed" section above to make sure your framework was properly updated.
