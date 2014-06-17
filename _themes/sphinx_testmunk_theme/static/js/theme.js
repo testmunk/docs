@@ -52,13 +52,28 @@ $( document ).ready(function() {
     $("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
 
     // Make the danger admonition display troubleshooting instead
-    $(".admonition.danger").children(".first").html("Troubleshooting")
+    $(".admonition.danger").children(".first").html("Troubleshooting");
 
-    //Copies the last paragraph of an admonition to it's title and deletes it
+    // Copies the last paragraph of an admonition to it's title and deletes it
+    // If it is a teststep admonition it completely replaces the title, else it
+    // gets appended to the admonition name
     $("div.admonition").each(function(){
-        var title = $(this).children(".last").html();
-        $(this).children(".admonition-title").append( ": " + title );
-        $(this).children(".last").remove();
+        if ($(this).hasClass("admonition-teststep-android-ios") ||
+            $(this).hasClass("admonition-teststep-ios-android") ||
+            $(this).hasClass("admonition-teststep-ios") ||
+            $(this).hasClass("admonition-teststep-android") ||
+            $(this).hasClass("admonition-teststep") ) {
+
+            var title = $(this).children(".last").html();
+            $(this).children(".admonition-title").html(title);
+            $(this).children(".last").remove();
+
+        } else {
+
+            var title = $(this).children(".last").html();
+            $(this).children(".admonition-title").append( ": " + title );
+            $(this).children(".last").remove();
+        }
     });
 
     // Add chevron to the right of the admonitions' title bar
@@ -72,10 +87,17 @@ $( document ).ready(function() {
     $(".admonition").click(toggleAdmBody);
 
     // Make all external links open in a new window
-    $("a.reference.external").attr("target", "_blank")
+    $("a.reference.external").attr("target", "_blank");
 
     // Initialize image expanding and retracting
     $(".rst-content img").each(hideSS);
+
+    // Add Android icon next to iOS's in teststeps that are compatible with both
+    $(".admonition-teststep-ios-android .admonition-title")
+        .prepend('<i class="fa fa-android second-platform-icon"></i>');
+    $(".admonition-teststep-android-ios .admonition-title")
+        .prepend('<i class="fa fa-android second-platform-icon"></i>');
+
 
 
     /**
