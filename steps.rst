@@ -362,9 +362,9 @@ Assertions
 
 	Related Teststeps:
 
-	-Then I should see text ending with "suffix"
+	- Then I should see text ending with "suffix"
 
-	-Then I should see text starting with "prefix"
+	- Then I should see text starting with "prefix"
 
 	Then I should see text containing "sub text"
 
@@ -375,15 +375,15 @@ Assertions
 
 	Examples:
 
-	.. code-blocks:: cucumber
+	.. code-block:: cucumber
 
 		Then I should see text ending with "suffix"
 	
 	Related Teststeps:
 
-	-Then I should see text containing "sub text"
+	- Then I should see text containing "sub text"
 	
-	-Then I should see text starting with "prefix"
+	- Then I should see text starting with "prefix"
 
 	Then I should see text ending with "suffix"
 
@@ -394,7 +394,7 @@ Assertions
 
 	Examples:
 
-	.. code-blocks:: cucumber
+	.. code-block:: cucumber
 
 		Then I see 2 buttons
 		Then I see 4 input fields
@@ -570,7 +570,7 @@ Waiting
 
 	Examples:
 
-	.. code-block::
+	.. code-block:: cucumber
 
 		Then I wait to see "Welcome"
 		Then I wait to see "Please log in:"
@@ -882,12 +882,12 @@ Gestures
 
 	Examples:
 
-	.. code-blocks:: cucumber
+	.. code-block:: cucumber
 
 		Then I scroll down
 		Then I scroll up
 
-	Options
+	Options:
 
 	The last parameter (down) can also be up, left and right.
 
