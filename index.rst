@@ -14,6 +14,7 @@ Contents:
    android
    ios
    steps
+   rest
 ..   overview
-..   rest
+
 
