@@ -365,7 +365,7 @@ Assertions
 	Then I should not see "text or label"
 
 
-.. admonition:: teststep ios android
+.. admonition:: teststep ios
 
 	Description coming soon!
 
@@ -397,7 +397,7 @@ Assertions
 
 	Description coming soon!
 
-	Then I don't see the text "text or label"
+	Then I don't see the text "some text"
 
 
 .. admonition:: teststep ios
@@ -513,13 +513,6 @@ Assertions
 
 	Description coming soon!
 
-	Then I should see a "Username" input field
-
-
-.. admonition:: teststep ios
-
-	Description coming soon!
-
 	Then I should not see a "Username" input field
 
 
@@ -549,7 +542,7 @@ Assertions
 	Then I should see a map
 
 
-.. admonition:: teststep ios android
+.. admonition:: teststep android
 
 	Description coming soon!
 
