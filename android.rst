@@ -1,7 +1,7 @@
 Android
 =======
 
-Testmunk Android enables you to write automated functional testcases that you can run on various Android devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write testcases and let them run locally on your emulator and Android device as well as on a variety of Android devices over the cloud in the testmunk device lab.
+Testmunk Android enables you to write automated functional testcases that you can run on various Android devices with different OS versions. Our goal is that you are able to reduce your manual testing time tremendeously. Following the installation you will be able to write testcases and let them run locally on your emulator and Android device as well as on a variety of Android devices over the cloud in the Testmunk device lab.
 
 Installation
 ------------
@@ -9,7 +9,7 @@ Installation
 Install Calabash gem
 ~~~~~~~~~~~~~~~~~~~~
 
-In order to get started with testmunk, you need to install the calabash gem. Simply open your terminal window and execute:
+In order to get started with Testmunk, you need to install the Calabash gem. Simply open your terminal window and execute:
 
 .. code-block:: console
 
@@ -24,7 +24,7 @@ In case you don't have the right permissions, please execute:
 .. HINT::
 	Calabash is a framework that allows you to write automated mobile application tests for iOS and Android. It provides APIs for mimicking input to the devices, and reading its output.
 
-	What is calabash?
+	What is Calabash?
 
 .. DANGER:: 
 
@@ -92,7 +92,7 @@ After you have configured your bash profile, please close all terminal windows t
 
 Plug in your Android device
 
-After you have plugged in your android device into your mac, open a new terminal window and execute:
+After you have plugged in your android device into your computer, open a new terminal window and execute:
 
 .. code-block:: console
 
@@ -105,12 +105,19 @@ You should see output similar to the following, which confirmes that your device
 
 In case you don't see any output please confirm that you activated the "USB debugging" mode for your device. You can activate it by going to "Settings".
 
+Download the Testmunk sample application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We provide a simple Android app template for the purposes of this tutorial. To get this app, download or clone `this GitHub repository <https://github.com/testmunk/TMSampleAndroid>`_.
+
+In this tutorial, we will only be using the APK file, but the source code is included so you can take a look if you wish.
+
 .. VIDEO HEREEEEEEE
 
 Preparing testcases
 -------------------
 
-After you have downloaded the files open a new terminal window and navigate via cd to the TestmunkAndroidDemo folder that you just downloaded. Then execute:
+After you have downloaded the files open a new terminal window and navigate via cd to the TMSampleAndroid folder that you just downloaded. Then execute:
 
 .. code-block:: console
 
@@ -333,7 +340,7 @@ Testmunk Android enables you to run your testcases on:
 
  1. the virtual emulator
  2. on your plugged in Android device
- 3. on a variety of Android devices with different OS versions in the testmunk device lab.
+ 3. on a variety of Android devices with different OS versions in the Testmunk device lab.
 
 Running locally on the emulator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -358,7 +365,7 @@ Your testrun should get executed on your device. It's important that you use an 
 Running on multiple Android devices
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In order to run your testcases on testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your apk file and testcases.
+In order to run your testcases on Testmunk's devices and see a report with your test results and screenshots, simply create an account, upload your apk file and testcases.
 
 .. VIDEO HEREEEEE
 
@@ -367,7 +374,7 @@ Image Comparison in Calabash
 
 The goal of this post is to show how we can do basic image recognition using Calabash Android library.
 
-Image comparison is another way that allows you to assert your tests using calabash cucumber. However, calabash cucumber does not support it by default. So, we have created some custom steps that you can include in your features folder, and you’ll have image comparison working in a short time.
+Image comparison is another way that allows you to assert your tests using Calabash. However, Calabash does not support it by default. So, we have created some custom steps that you can include in your features folder, and you’ll have image comparison working in a short time.
 
 Image comparison is a tricky topic. Some comparisons are as simple as pixel by pixel checking; very advanced scenarios may compare a small image within a bigger image, or even images which are slightly shifted or compressed.
 
