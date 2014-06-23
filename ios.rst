@@ -438,6 +438,12 @@ If you want to run a test locally in your device, you need to:
 
 	Make sure to replace ``192.168.1.43``  with your device's LAN IP address, ``97da4f58c9a95b7286c760372fd3d27be85a17cf`` with your device's UDID, ``com.sample.TestmunkDemo-copy`` with your application's Bundle Identifier, ``TestmunkDemo.app`` with your ``.app`` filename, and ``L32`` with the name of the testcase you want to run.
 
+.. HINT::
+
+	The RESET_BETWEEN_SCENARIOS=1 variable will make your tests start with a fresh install of your application. We recommend this method to keep tests independant, as opposed to relying on each other, to make them easier to debug. Testmunk servers will always reinstall your app after every testcase.
+
+	What is 'RESET_BETWEEN_SCENARIOS=1'?
+
 .. DANGER::
 
 	If you are getting an error that reads ``tool 'xcodebuild' requires Xcode, but active developer directory ...``, then open Xcode, and go to `Xcode > Preferences > Locations` and in the `Command Line Tools` dropdown menu select `Xcode`.
@@ -452,7 +458,7 @@ If you want to run a test locally in your device, you need to:
 	- Make sure Xcode is not executing any projects at the time.
 	- Have only one instance of Xcode open, with the project you are trying to run, and the scheme you want to build selected.
 	- Make sure you have the same version of Calabash in your Terminal tool and the framework you are linking in your project.
-	
+
 	Other errors
 
 
