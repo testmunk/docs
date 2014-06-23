@@ -413,13 +413,47 @@ That will initiate the testruns on your simulator.
 	- Manually run your app on the simulator through Xcode, and then close and stop it.
 	- Make sure Xcode is not executing any projects at the time.
 	- Have only one instance of Xcode open, with the project you are trying to run, and hte scheme you want to build selected.
-	- Have the same version of Calabash in your Terminal tool and the framework you are linking in your project.
+	- Make sure you have the same version of Calabash in your Terminal tool and the framework you are linking in your project.
 	- Choose the `Reset content and settings` option in your iOS simulator.
 
 	Other errors
 
 
 .. VIDEO HEREEEEEE
+
+Running locally on a device
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to run a test locally in your device, you need to:
+
+- Connect your device to your computer with a USB cable
+- Connect your device and computer to the same LAN
+- Deploy the app to your device using Xcode, making sure to deploy the target that has the Calabash framework linked to it (a.k.a. the "...-tm" target).
+- ``cd`` to the directory that contains your ``.app`` file and your ``features`` folder
+- Use this command:
+
+	.. code-block:: console
+
+		$ RESET_BETWEEN_SCENARIOS=1 DEVICE_ENDPOINT=http://192.168.1.43:37265 DEVICE_TARGET=97da4f58c9a95b7286c760372fd3d27be85a17cf BUNDLE_ID=com.sample.TestmunkDemo-copy APP_BUNDLE_PATH="TestmunkDemo.app" cucumber -v -n "L32"
+
+	Make sure to replace ``192.168.1.43``  with your device's LAN IP address, ``97da4f58c9a95b7286c760372fd3d27be85a17cf`` with your device's UDID, ``com.sample.TestmunkDemo-copy`` with your application's Bundle Identifier, ``TestmunkDemo.app`` with your ``.app`` filename, and ``L32`` with the name of the testcase you want to run.
+
+.. DANGER::
+
+	If you are getting an error that reads ``tool 'xcodebuild' requires Xcode, but active developer directory ...``, then open Xcode, and go to `Xcode > Preferences > Locations` and in the `Command Line Tools` dropdown menu select `Xcode`.
+
+	'xcodebuild' error
+
+.. DANGER::
+
+	If the command dosen’t work, try this fixes one at a time:
+
+	- Manually run your app on the simulator through Xcode, and then close and stop it.
+	- Make sure Xcode is not executing any projects at the time.
+	- Have only one instance of Xcode open, with the project you are trying to run, and the scheme you want to build selected.
+	- Make sure you have the same version of Calabash in your Terminal tool and the framework you are linking in your project.
+	
+	Other errors
 
 
 Running on multiple iOS devices
