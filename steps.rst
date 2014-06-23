@@ -25,6 +25,15 @@ Touching
 		Then I touch "login"
 		Then I touch "settings_button"
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I (?:press|touch) "([^\"]*)"$/ do |name|
+		  touch("view marked:'#{name}'")
+		  sleep(STEP_PAUSE)
+		end
+
 	Then I touch "accLabel"
 
 
@@ -43,6 +52,15 @@ Touching
 	- Then I touch button number 1
 	- Then I touch "label"
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I (?:press|touch) the "([^\"]*)" button$/ do |name|
+		  touch("button marked:'#{name}'")
+		  sleep(STEP_PAUSE)
+		end
+
 	Then I touch the "login" button
 
 
@@ -55,6 +73,17 @@ Touching
 	.. code-block:: cucumber
 
 		Then I touch button number 1
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I (?:press|touch) button number (\d+)$/ do |index|
+		  index = index.to_i
+		  screenshot_and_raise "Index should be positive (was: #{index})" if (index<=0)
+		  touch("button index:#{index-1}")
+		  sleep(STEP_PAUSE)
+		end
 
 	Then I touch button number 1
 
@@ -69,6 +98,23 @@ Touching
 
 		Then I touch the "Email Address" input field
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I (?:press|touch) the "([^\"]*)" (?:input|text) field$/ do |name|
+		  placeholder_query = "textField placeholder:'#{name}'"
+		  marked_query = "textField marked:'#{name}'"
+		  if !query(placeholder_query).empty?
+		    touch(placeholder_query)
+		  elsif !query(marked_query).empty?
+		    touch(marked_query)
+		  else
+		    screenshot_and_raise "could not find text field with placeholder '#{name}' or marked as '#{name}'"
+		  end
+		  sleep(STEP_PAUSE)
+		end
+
 	Then I touch the "placeholder" input field
 
 
@@ -81,6 +127,17 @@ Touching
 	.. code-block:: cucumber
 
 		Then I touch list item number 1
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I (?:press|touch) list item number (\d+)$/ do |index|
+		   index = index.to_i
+		   screenshot_and_raise "Index should be positive (was: #{index})" if (index<=0)
+		   touch("tableViewCell index:#{index-1}")
+		   sleep(STEP_PAUSE)
+		end
 
 	Then I touch list item number 1
 
@@ -99,6 +156,15 @@ Touching
 
 	+ Then I toggle the "label" switch
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I toggle the switch$/ do
+		  touch("switch")
+		  sleep(STEP_PAUSE)
+		end
+
 	Then I toggle the switch
 
 
@@ -112,12 +178,28 @@ Touching
 
 		Then I toggle the "Weekly Reminder" switch
 
+	.. code-block:: ruby
+
+		Then /^I toggle the "([^\"]*)" switch$/ do |name|
+		  touch("switch marked:'#{name}'")
+		  sleep(STEP_PAUSE)
+		end
+
 	Then I toggle the "accLabel" switch
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Touching the done button in the keyboard.
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I (?:touch|press) (?:done|search)$/ do
+		  done
+		  sleep(STEP_PAUSE)
+		end
 
 	Then I touch done
 
@@ -132,6 +214,15 @@ Touching
 
 		Then I touch the user location
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I touch (?:the)? user location$/ do
+		  touch("view:'MKUserLocationView'")
+		  sleep(STEP_PAUSE)
+		end
+
 	Then I touch the user location
 
 
@@ -144,6 +235,15 @@ Touching
 	.. code-block:: cucumber
 
 		Then I touch on screen 200 from the left and 100 from the top
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I (?:press|touch) on screen (\d+) from the left and (\d+) from the top$/ do |x, y|
+		  touch(nil, {:offset => {:x => x.to_i, :y => y.to_i}})
+		  sleep(STEP_PAUSE)
+		end
 
 	Then I touch on screen 100 from the left and 250 from the top
 
@@ -222,7 +322,7 @@ Touching
 
 	Description coming soon!
 
-	Then I long press “signup" and select item number “1"
+	Then I long press “signup" and select item number 1
 
 
 .. admonition:: teststep android
