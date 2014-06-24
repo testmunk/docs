@@ -630,14 +630,14 @@ Input
 
 	Description coming soon!
 
-	Then I enter "text" as "accLabel"
+	Then I enter "text" as "fieldId"
 
 
 .. admonition:: teststep android
 
 	Description coming soon!
 
-	Then I enter "text" into "accLabel"
+	Then I enter "text" into "fieldId"
 
 
 .. admonition:: teststep android
@@ -805,14 +805,14 @@ Waiting
 
 	Description coming soon!
 
-	Then I wait for the "accLabel" button to appear
+	Then I wait for the "id" button to appear
 
 
 .. admonition:: teststep android
 
 	Description coming soon!
 
-	Then I wait for the "accLabel" screen to appear
+	Then I wait for the "id" screen to appear
 
 
 .. admonition:: teststep android
@@ -826,14 +826,14 @@ Waiting
 
 	Description coming soon!
 
-	Then I wait up to 5 seconds for the "accLabel" screen to appear
+	Then I wait up to 5 seconds for the "id" screen to appear
 
 
 .. admonition:: teststep android
 
 	Description coming soon!
 
-	Then I wait upto 5 seconds for the "accLabel" screen to appear
+	Then I wait upto 5 seconds for the "id" screen to appear
 
 
 .. admonition:: teststep android
@@ -998,7 +998,7 @@ Gestures
 
 	Description coming soon!
 
-	Then I select "accLabel" from the menu
+	Then I select "id" from the menu
 
 
 .. admonition:: teststep android
