@@ -174,6 +174,9 @@ However, once you click on the X button, the window enlarges – then you are in
 
 To go back to the navigation mode, simply click the X again to minimize the Accessibility Inspector.
 
+Calabash console
+****************
+
 A more advanced way of inspecting elements on the view is using the Calabash console to see a list of the app's visible elements. Inside the folder you downloaded, go to ``TMSample/`` and run this Terminal command:
 
 .. code-block:: console

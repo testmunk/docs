@@ -148,6 +148,9 @@ In the following we'd like to show you how you can easily write your own testcas
 Inspect app for elements
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+UI Automator Viewer
+*******************
+
 Please tap on the app on your device so that it is launched. Open a new terminal window and execute:
 
 .. code-block:: console
@@ -176,6 +179,9 @@ This inspection is important to identify the right elements that you later will 
 	Early versions of Android
 
 .. VIDEO HEREEE
+
+Calabash console
+****************
 
 A more advanced way of inspecting elements on the view is using the console. Open a new terminal window, ``cd`` into the folder that contains your ``APK`` file, and enter:
 
