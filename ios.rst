@@ -437,9 +437,9 @@ If you want to run a test locally in your device, you need to:
 
 	.. code-block:: console
 
-		$ RESET_BETWEEN_SCENARIOS=1 DEVICE_ENDPOINT=http://192.168.1.43:37265 DEVICE_TARGET=97da4f58c9a95b7286c760372fd3d27be85a17cf BUNDLE_ID=com.sample.TestmunkDemo-copy APP_BUNDLE_PATH="TestmunkDemo.app" cucumber -v -n "L32"
+		$ RESET_BETWEEN_SCENARIOS=1 DEVICE_ENDPOINT=http://192.168.1.43:37265 DEVICE_TARGET=97da4f58c9a95b7286c760372fd3d27be85a17cf BUNDLE_ID=com.sample.TestmunkDemo-copy APP_BUNDLE_PATH="TestmunkDemo.app" cucumber -v
 
-	Make sure to replace ``192.168.1.43``  with your device's LAN IP address, ``97da4f58c9a95b7286c760372fd3d27be85a17cf`` with your device's UDID, ``com.sample.TestmunkDemo-copy`` with your application's Bundle Identifier, ``TestmunkDemo.app`` with your ``.app`` filename, and ``L32`` with the name of the testcase you want to run.
+	Make sure to replace ``192.168.1.43``  with your device's LAN IP address, ``97da4f58c9a95b7286c760372fd3d27be85a17cf`` with your device's UDID, ``com.sample.TestmunkDemo-copy`` with your application's Bundle Identifier, and ``TestmunkDemo.app`` with your ``.app`` filename.
 
 .. HINT::
 
