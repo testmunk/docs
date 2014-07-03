@@ -250,70 +250,210 @@ Touching
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Taps the button containing the specified text.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Given I press the "login" button
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Given /^I press the "([^\"]*)" button$/ do |text|
+		  tap_when_element_exists("android.widget.Button {text CONTAINS[c] '#{text}'}")
+		end
 
 	Given I press the “login" button
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Taps the button with the specified index.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I press button number 1
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I press button number (\d+)$/ do |index|
+		  tap_when_element_exists("android.widget.Button index:#{index.to_i-1}")
+		end
 
 	Then I press button number 1
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Taps the view with the given ID.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I press view with id "home_button"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I press view with id "([^\"]*)"$/ do |id|
+		  tap_when_element_exists("* id:'#{id}'")
+		end
 
 	Then I press view with id "home_button"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Taps the view marked by the specified identifier.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I press “signup"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I press "([^\"]*)"$/ do |identifier|
+		  tap_when_element_exists("* marked:'#{identifier}'")
+		end
 
 	Then I press “signup"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Taps the specified text.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I touch the “welcome" text
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I touch the "([^\"]*)" text$/ do |text|
+		  tap_when_element_exists("* {text CONTAINS[c] '#{text}'}")
+		end
 
 	Then I touch the “welcome" text
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Taps the list item with the specified index in the first visible list.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I press list item number 1
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I press list item number (\d+)$/ do |index|
+		  tap_when_element_exists("android.widget.ListView index:0 android.widget.TextView index:#{index.to_i-1}")
+		end
 
 	Then I press list item number 1
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Long presses the list item with the specified index in the first visible list.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I long press list item number 1
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I long press list item number (\d+)$/ do |index|
+		  long_press_when_element_exists("android.widget.ListView index:0 android.widget.TextView index:#{index.to_i-1}")
+		end
 
 	Then I long press list item number 1
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Taps the screen at the specified location.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I click on screen 20% from the left and 30% from the top
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I click on screen (\d+)% from the left and (\d+)% from the top$/ do |x, y|
+		  perform_action('click_on_screen', x, y)
+		end
 
 	Then I click on screen 20% from the left and 30% from the top
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Toggles the checkbox with the specified index.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I toggle checkbox number 1
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I toggle checkbox number (\d+)$/ do |index|
+		  tap_when_element_exists("android.widget.CheckBox index:#{index.to_i-1}")
+		end
 
 	Then I toggle checkbox number 1
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Long presses the view containing the specified text.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I long press “login"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I long press "([^\"]*)"$/ do |text|
+		  long_press_when_element_exists("* {text CONTAINS[c] '#{text}'}")
+		end
 
 	Then I long press “login"
 
