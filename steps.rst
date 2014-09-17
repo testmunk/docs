@@ -66,7 +66,7 @@ Touching
 
 .. admonition:: teststep ios
 
-	This macro will touch the first button [UIButton] it can find. If there is no button on that index, it will return an error.
+	Touches the first button [UIButton] it can find. If there is no button on that index, it will return an error.
 
 	Examples:
 	
@@ -90,7 +90,7 @@ Touching
 
 .. admonition:: teststep ios
 
-	This macro will touch (and activate) the input field [UITextField] with the label string passed.
+	Touches (and activates) the input field [UITextField] with the label string passed.
 
 	Examples:
 
@@ -120,7 +120,7 @@ Touching
 
 .. admonition:: teststep ios
 
-	This macro will touch the table cell [UITableViewCell] by number. It only works on visible cells.
+	Touches the table cell [UITableViewCell] by number. It only works on visible cells.
 
 	Examples:
 
@@ -144,7 +144,7 @@ Touching
 
 .. admonition:: teststep ios
 
-	This macro will toggle the switch (UISwitch) available in the current view. This macro only works if there is one switch in view. [See related for multiple switches]
+	Toggles the switch (UISwitch) available in the current view. This macro only works if there is one switch in view. [See related for multiple switches]
 
 	Examples:
 
@@ -170,13 +170,15 @@ Touching
 
 .. admonition:: teststep ios
 
-	This macro will toggle the switch which is tagged by the label provided.
+	Toggles the switch which is tagged by the label provided.
 
 	Examples:
 
 	.. code-block:: cucumber
 
 		Then I toggle the "Weekly Reminder" switch
+
+	Implementation:
 
 	.. code-block:: ruby
 
@@ -190,7 +192,13 @@ Touching
 
 .. admonition:: teststep ios
 
-	Touching the done button in the keyboard.
+	Touches the done button on the keyboard.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I touch done
 
 	Implementation:
 
@@ -206,7 +214,7 @@ Touching
 
 .. admonition:: teststep ios
 
-	This macro will touch the user’s pin – the blue dot [MKUserLocation].
+	Touches the user’s pin – the blue dot [MKUserLocation].
 
 	Examples:
 
@@ -228,7 +236,7 @@ Touching
 
 .. admonition:: teststep ios
 
-	This macro will attempt to touch the screen on the points provided. Please be careful when using this since it the elements positions might differ on different devices.
+	This macro will attempt to touch the screen on the points provided. Please be careful when using this as elements' positions may change on different devices.
 
 	Examples:
 
@@ -288,6 +296,27 @@ Touching
 		end
 
 	Then I press button number 1
+
+
+.. admonition:: teststep android
+
+	Taps the image button with the specified index.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I press image button number 2
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I press image button number (\d+)$/ do |index|
+ 		  tap_when_element_exists("android.widget.ImageButton index:#{index.to_i-1}")
+		end
+
+	Then I press image button number 2
 
 
 .. admonition:: teststep android
@@ -460,14 +489,52 @@ Touching
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Long presses the view containing the specified text and then selects an item from the menu that appears.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I long press “signup" 
+		Then I select "item number 1" from the menu
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I long press "([^\"]*)"$/ do |text|
+		  long_press_when_element_exists("* {text CONTAINS[c] '#{text}'}")
+		end
+
+		Then /^I select "([^\"]*)" from the menu$/ do |identifier|
+  		  select_options_menu_item(identifier)
+		end
 
 	Then I long press “signup" and select item number 1
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Long presses the view containing the specified text and then selects an item from the menu that appears.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I long press “login" 
+		Then I select "welcome" from the menu
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I long press "([^\"]*)"$/ do |text|
+		  long_press_when_element_exists("* {text CONTAINS[c] '#{text}'}")
+		end
+
+		Then /^I select "([^\"]*)" from the menu$/ do |identifier|
+  		  select_options_menu_item(identifier)
+		end
 
 	Then I long press “login" and select “welcome"
 
@@ -485,6 +552,18 @@ Assertions
 
 		Then I should see "Welcome"
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I should see "([^\"]*)"$/ do |expected_mark|
+  		  res = (element_exists( "view marked:'#{expected_mark}'" ) or
+         	 element_exists( "view text:'#{expected_mark}'"))
+  	      if not res
+    		screenshot_and_raise "No element found with mark or text: #{expected_mark}"
+  		  end
+		end
+
 	Then I should see "text or label"
 
 
@@ -497,6 +576,18 @@ Assertions
 	.. code-block:: cucumber
 
 		Then I should not see "Logout"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I should not see "([^\"]*)"$/ do |expected_mark|
+		  res = query("view marked:'#{expected_mark}'")
+		  res.concat query("view text:'#{expected_mark}'")
+		   unless res.empty?
+		   screenshot_and_raise "Expected no element with text nor accessibilityLabel: #{expected_mark}, found #{res.join(", ")}"
+	 	  end
+		end
 	
 	Related Teststeps:
 
@@ -507,48 +598,48 @@ Assertions
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Checks all the views to make sure that the view with the provided accessibility label “view” is available. It will fail if it does not find such a view.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I see the "Logout"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I see the "([^\"]*)"$/ do |text|
+  		  macro %Q|I should see "#{text}"|
+		end
+	
+	Related Teststeps:
+
+	- Then I should not see "text or label"
+
+	- Then I don't see the "someview"
 
 	Then I see the "someview"
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
-
-	Then I should see a "login" button
-
-
-.. admonition:: teststep ios
-
-	Description coming soon!
-
-	Then I should not see a "login" button
-
-
-.. admonition:: teststep ios android
-
-	Description coming soon!
-
-	Then I see the text "some text"
-
-
-.. admonition:: teststep ios android
-
-	Description coming soon!
-
-	Then I don't see the text "some text"
-
-
-.. admonition:: teststep ios
-
-	This will check all the views to make sure that the view with the provided accessibility label “view” is not available. It will fail if it finds such a view.
+	Checks all the views to make sure that the view with the provided accessibility label “view” is not available. It will fail if it finds such a view.
 
 	Examples:
 
 	.. code-block:: cucumber
 
 		Then I don't see the "Logout"
+
+	Implementation: 
+
+	.. code-block:: ruby
+		
+		Then /^I don't see the "([^\"]*)"$/ do |text|
+  		  macro %Q|I should not see "#{text}"|
+		end
 	
 	Related Teststeps:
 
@@ -559,16 +650,90 @@ Assertions
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Checks the view for the existence of a specified button. If Calabash is unable to find the button, then the teststep fails. 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I should see a "login" button
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I should see a "([^\"]*)" button$/ do |expected_mark|
+  		  check_element_exists("button marked:'#{expected_mark}'")
+		end
 
 	Then I should see a "login" button
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Checks the view for the existence of a specified button. If Calabash is able to find the button, then the teststep fails. 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I should not see a "login" button
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I should not see a "([^\"]*)" button$/ do |expected_mark|
+  		  check_element_does_not_exist("button marked:'#{expected_mark}'")
+		end
+
+	Related teststeps:
+
+	- Then I should see a "login" button
 
 	Then I should not see a "login" button
+
+
+.. admonition:: teststep ios android
+
+	Asserts that specified text can be found. If Calabash is not able to find the text, then the teststep fails. 
+	
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I see the text "Hello"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I see the text "([^\"]*)"$/ do |text|
+  		  macro %Q|I should see "#{text}"|
+		end
+
+	Then I see the text "some text"
+
+
+.. admonition:: teststep ios android
+
+	Asserts that specified text can not be found. If Calabash is able to find the text, then the teststep fails. 
+	
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I don't see the text "Hello"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I don't see the text "([^\"]*)"$/ do |text|
+  		  macro %Q|I should not see "#{text}"|
+		end
+
+	Then I don't see the text "some text"
 
 
 .. admonition:: teststep ios
@@ -580,6 +745,17 @@ Assertions
 	.. code-block:: cucumber
 
 		Then I should see text starting with "Welcome"
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I (?:should)? see text starting with "([^\"]*)"$/ do |text|
+	  	  res = query("view {text BEGINSWITH '#{text}'}").empty?
+	  	  if res
+			screenshot_and_raise "No text found starting with: #{text}"
+	  	  end
+		end
 
 	Related Teststeps:
 
@@ -600,6 +776,17 @@ Assertions
 
 		Then I should see text containing "available"
 
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I (?:should)? see text containing "([^\"]*)"$/ do |text|
+  		  res = query("view {text LIKE '*#{text}*'}").empty?
+  		  if res
+    		screenshot_and_raise "No text found containing: #{text}"
+  		  end
+		end
+
 	Related Teststeps:
 
 	- Then I should see text ending with "suffix"
@@ -618,7 +805,18 @@ Assertions
 	.. code-block:: cucumber
 
 		Then I should see text ending with "suffix"
-	
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I (?:should)? see text ending with "([^\"]*)"$/ do |text|
+  		  res = query("view {text ENDSWITH '#{text}'}").empty?
+  		  if res
+    		screenshot_and_raise "No text found ending with: #{text}"
+  		  end
+		end
+
 	Related Teststeps:
 
 	- Then I should see text containing "sub text"
@@ -630,28 +828,83 @@ Assertions
 
 .. admonition:: teststep ios
 
-	Checks to see if the view contains 2 input fields, the input fields can be replaced with buttons, or other types of views.
+	Checks to see if the view contains 2 input fields, the input fields can be replaced with buttons, or other elements.
 
 	Examples:
 
 	.. code-block:: cucumber
 
 		Then I see 2 buttons
-		Then I see 4 input fields
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I see (\d+) (?:input|text) field(?:s)?$/ do |count|
+  		  count = count.to_i
+  		  cnt = query(:textField).count
+  		  if cnt < count
+      		screenshot_and_raise "Expected at least #{count} text/input fields, found #{cnt}"
+  		  end
+		end
 
 	Then I see 2 input fields
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Checks to see if the view contains an input field with the specified placeholder or accessibilityLabel. 
+
+	Examples:
+
+	.. code-block:: cucumber 
+
+		Then I should see a "Username" input field 
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I should see a "([^\"]*)" (?:input|text) field$/ do |expected_mark|
+  		  res = element_exists("textField placeholder:'#{expected_mark}'") ||
+        		element_exists("textField marked:'#{expected_mark}'")
+  		  unless res
+   			screenshot_and_raise "Expected textfield with placeholder or accessibilityLabel: #{expected_mark}"
+  		  end
+		end
+
+	Related Teststeps:
+
+	- Then I should not see a "Username" input field
 
 	Then I should see a "Username" input field
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Checks to see if the view does not contain an input field with the specified placeholder or accessibilityLabel. 
+
+	Examples:
+
+	.. code-block:: cucumber 
+
+		Then I should not see a "Username" input field 
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I should not see a "([^\"]*)" (?:input|text) field$/ do |expected_mark|
+ 		  res = query("textField placeholder:'#{expected_mark}'")
+  		  res.concat query("textField marked:'#{expected_mark}'")
+  		  unless res.empty?
+    		screenshot_and_raise "Expected no textfield with placeholder nor accessibilityLabel: #{expected_mark}, found #{res}"
+  		  end
+		 end
+
+	Related Teststeps:
+
+	- Then I should see a "Username" input field
 
 	Then I should not see a "Username" input field
 
@@ -666,6 +919,14 @@ Assertions
 
 		Then I should see the user location
 
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I should see (?:the)? user location$/ do
+  		  check_element_exists("view:'MKUserLocationView'")
+		end
+
 	Then I should see the user location
 
 
@@ -679,12 +940,34 @@ Assertions
 
 		Then I should see a map
 
+	Implementation
+
+	.. code-block:: ruby 
+
+		Then /^I should see a map$/ do
+  		  check_element_exists("view:'MKMapView'")
+		end
+
 	Then I should see a map
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Asserts that specified text can not be found. If Calabash is able to find the text, then the teststep fails.
+
+	Examples: 
+
+	.. code-block:: cucumber 
+
+			Then I don't see "Hello"
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+			Then /^I don't see "([^\"]*)"$/ do |text|
+			  wait_for_text_to_disappear(text, timeout: 10)
+			end
 
 	Then I don't see “text"
 
@@ -702,6 +985,17 @@ Input
 
 		Then I enter "user@testmunk.com" into the "Email Address" input field
 
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Then /^I enter "([^\"]*)" into the "([^\"]*)" field$/ do |text_to_type, field_name|
+  		  touch("textField marked:'#{field_name}'")
+  		  wait_for_keyboard()
+  		  keyboard_enter_text text_to_type
+  		  sleep(STEP_PAUSE)
+		end
+
 	Then I enter "text to write" into the "placeholder" input field
 
 
@@ -714,6 +1008,19 @@ Input
 	.. code-block:: cucumber
 
 		Then I enter "First name" into input field number 1
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Then /^I enter "([^\"]*)" into (?:input|text) field number (\d+)$/ do |text, index|
+  		  index = index.to_i
+  		  screenshot_and_raise "Index should be positive (was: #{index})" if (index<=0)
+  		  touch("textField index:#{index-1}")
+  		  wait_for_keyboard()
+  		  keyboard_enter_text text
+ 		  sleep(STEP_PAUSE)
+		end
 
 	Then I enter "text" into input field number 1
 
@@ -728,68 +1035,215 @@ Input
 
 		Then I clear "Email Address"
 
+	Implementation:
+
+	.. code-block:: ruby 
+
+		When /^I clear "([^\"]*)"$/ do |name|
+  		  msg = "When I clear <name>' will be deprecated because it is ambiguous - what should be cleared?"
+  		  _deprecated('0.9.151', msg, :warn)
+  		  clear_text("textField marked:'#{name}'")
+		end
+
 	Then I clear "placeholder"
 
 
 .. admonition:: teststep ios android
 
-	Description coming soon!
+	Clears the text from the specified input / text field [UITextField]. If there are several input fields you will need to check which input field number is correct.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I clear input field number 1
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Then /^I clear (?:input|text) field number (\d+)$/ do |index|
+  		  index = index.to_i
+  		  screenshot_and_raise "Index should be positive (was: #{index})" if (index<=0)
+  		  clear_text("textField index:#{index-1}")
+		end
+
 
 	Then I clear input field number 1
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Finds the timepicker with the specified index and changes the time.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Given I set the time to "14:00" on TimePicker with index "5"		
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Given /^I set the time to "(\d\d:\d\d)" on TimePicker with index ([^\"]*)$/ do |time, index|
+  		  set_time("android.widget.TimePicker index:#{index.to_i-1}", time)
+		end
 
 	Given I set the time to "14:00" on TimePicker with index "5"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Finds the timepicker with the specified index and changes the time.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Given I set the "timePickerLabel" time to "14:00"		
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Given /^I set the "([^\"]*)" time to "(\d\d:\d\d)"$/ do |content_description, time|
+  		  set_time("android.widget.TimePicker {contentDescription LIKE[c] '#{content_description}'}", time)
+		end
 
 	Given I set the "timePickerLabel" time to "14:00"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Finds the datepicker by content description and changes the date.
 
-	Given I set the "datePickerLabel" date to "11-12-1993"
+	Examples:
+
+	.. code-block:: cucumber
+
+		Given I set the "what_is_the_date" date to "31-12-1999"
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Given /^I set the "([^\"]*)" date to "(\d\d-\d\d-\d\d\d\d)"$/ do |content_description, date|
+  		  set_date("android.widget.DatePicker {contentDescription LIKE[c] '#{content_description}'}", date)
+		end
+
+	Given I set the "datePickerLabel" date to "31-12-1999"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Enters the specified text into the input field with the specified id.
+
+	Examples:
+
+	.. code-block:: cucumber: 
+
+		Then I enter text "Hello" into field with id "type_here"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I enter text "([^\"]*)" into field with id "([^\"]*)"$/ do |text, id|
+  		  enter_text("android.widget.EditText id:'#{id}'", text)
+		end
 
 	Then I enter text "text" into field with id "fieldId"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Enters the specified text into the input field that has the specified content description.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+			Then I enter "Hello" as "text"
+
+	Implementation: 
+		
+	.. code-block:: ruby
+
+			Then /^I enter "([^\"]*)" as "([^\"]*)"$/ do |text, content_description|
+  			  enter_text("android.widget.EditText {contentDescription LIKE[c] '#{content_description}'}", text)
+			end
 
 	Then I enter "text" as "fieldId"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Enters the specified text into the input field that has the specified content description.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+			Then I enter "Hello" into "type_here"
+
+	Implementation: 
+		
+	.. code-block:: ruby
+
+			Then /^I enter "([^\"]*)" into "([^\"]*)"$/ do |text, content_description|
+  			  enter_text("android.widget.EditText {contentDescription LIKE[c] '#{content_description}'}", text)
+			end
 
 	Then I enter "text" into "fieldId"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Clears the text of the input field with the specified id.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I clear input field with id "type_here"
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Then /^I clear input field with id "([^\"]*)"$/ do |id|
+  		  clear_text("android.widget.EditText id:'#{id}'")
+		end
 
 	Then I clear input field with id "fieldId"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Finds the spinner marked by the specified 'spinner_identifier' or has a childview marked by the specified 'spinner_identifier'. It then selects the menu item marked by the specified 'item_identifier'.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I select "Hello" from "spinner"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I select "([^\"]*)" from "([^\"]*)"$/ do |item_identifier, spinner_identifier|
+  		  spinner = query("android.widget.Spinner marked:'#{spinner_identifier}'")
+
+  		  if spinner.empty?
+   		    tap_when_element_exists("android.widget.Spinner * marked:'#{spinner_identifier}'")
+  		  else
+  		    touch(spinner)
+ 		  end
+
+  		  tap_when_element_exists("android.widget.PopupWindow$PopupViewContainer * marked:'#{item_identifier}'")
+		end
 
 	Then I select "item text" from "spinnerLabel"
 
@@ -799,7 +1253,7 @@ Waiting
 
 .. admonition:: teststep ios
 
-	This teststep will make the testrun wait until the label [UILabel] with the text appears, or any other element eg. button [UIButton] appears.
+	Makes the testrun wait until the label [UILabel] with the text appears, or any other element eg. button [UIButton] appears.
 
 	Examples:
 
@@ -808,21 +1262,44 @@ Waiting
 		Then I wait to see "Welcome"
 		Then I wait to see "Please log in:"
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait to see "([^\"]*)"$/ do |expected_mark|
+  		  wait_for(WAIT_TIMEOUT) { view_with_mark_exists( expected_mark ) }
+		end
+
+	Related Teststeps:
+
+	- Then I wait for "text or label" to appear
+
 	Then I wait to see "text or label"
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Waits until the label [UILabel] with the text appears, or any other element eg. button [UIButton] appears.
+	
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I wait for "Welcome" to appear
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait for "([^\"]*)" to appear$/ do |name|
+  		  macro %Q|I wait to see "#{name}"|
+		end
+
+	Related Teststeps:
+
+	- Then I wait to see "text or label"
 
 	Then I wait for "text or label" to appear
-
-
-.. admonition:: teststep ios
-
-	Description coming soon!
-
-	Then I wait until I don't see "text or label"
 
 
 .. admonition:: teststep ios
@@ -833,35 +1310,102 @@ Waiting
 
 	.. code-block:: cucumber
 
-		Then I wait to not see "text or label"
+		Then I wait until I don't see "loading..."
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait until I don't see "([^\"]*)"$/ do |expected_mark|
+  		  sleep 1## wait for previous screen to disappear
+  		  wait_for(WAIT_TIMEOUT) { not element_exists( "view marked:'#{expected_mark}'" )}
+		end
+
+	Related Teststeps:
+
+	- Then I wait to not see "text or label"
+
+	Then I wait until I don't see "text or label"
+
+
+.. admonition:: teststep ios
+
+	Waits until an element with the label or text provided has disappeared.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I wait to not see "loading..."
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait to not see "([^\"]*)"$/ do |expected_mark|
+  		  macro %Q|I wait until I don't see "#{expected_mark}"|
+		end
+
+	Related Teststeps:
+
+	- Then I wait until I don't see "text or label"
 
 	Then I wait to not see "text or label"
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Waits for a button with the specified accessibility label to apprear. 
+
+	Examples:
+
+	.. code-block:: cucumber
+		
+		Then I wait for the "login" button to appear
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait for the "([^\"]*)" button to appear$/ do |name|
+  		  wait_for(WAIT_TIMEOUT) { element_exists( "button marked:'#{name}'" ) }
+		end
 
 	Then I wait for the "login" button to appear
 
 
 .. admonition:: teststep ios
 
-	This teststep will wait until the title in the navgation bar [UINavigationBar] changes to the provided text (ie. when the view changes), or the timeout occurs.
+	Waits until the title in the navgation bar [UINavigationBar] changes to the provided text (ie. when the view changes), or the timeout occurs.
 
 	Examples:
 
 	.. code-block:: cucumber
 
-		Then I wait to see a navigation bar title "Welcome"
-		Then I wait to see a navigation bar title "Login"
+		Then I wait to see a navigation bar titled "Welcome"
+		Then I wait to see a navigation bar titled "Login"
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait to see a navigation bar titled "([^\"]*)"$/ do |expected_mark|
+ 		  msg = "waited for '#{WAIT_TIMEOUT}' seconds but did not see the navbar with title '#{expected_mark}'"
+  		  wait_for(:timeout => WAIT_TIMEOUT,
+  		  		   :timeout_message => msg ) do
+			all_items = query("navigationItemView marked:'#{expected_mark}'")
+			button_items = query("navigationItemButtonView")
+			non_button_items = all_items.delete_if { |item| button_items.include?(item) }
+			!non_button_items.empty?
+  		  end
+		end
 
 	Then I wait to see a navigation bar titled "title"
 
 
 .. admonition:: teststep ios
 
-	This will wait until the specific input field appears.
+	Waits until the specified input field appears.
 
 	Examples:
 
@@ -869,12 +1413,23 @@ Waiting
 
 		Then I wait for the "Username" input field
 
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait for the "([^\"]*)" (?:input|text) field$/ do |placeholder_or_view_mark|
+  		  wait_for(WAIT_TIMEOUT) {
+   		    element_exists( "textField placeholder:'#{placeholder_or_view_mark}'") ||
+          		element_exists( "textField marked:'#{placeholder_or_view_mark}'")
+  		  }
+		end
+
 	Then I wait for the "label" input field
 
 
 .. admonition:: teststep ios
 
-	This will wait until the relevant number of textfields are loaded.
+	Waits until the relevant number of textfields are loaded.
 
 	Examples:
 
@@ -882,19 +1437,56 @@ Waiting
 
 		Then I wait for 2 input fields
 
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I wait for (\d+) (?:input|text) field(?:s)?$/ do |count|
+  		  count = count.to_i
+  		  wait_for(WAIT_TIMEOUT) { query(:textField).count >= count  }
+		end
+
 	Then I wait for 2 input fields
 
 
 .. admonition:: teststep ios android
 
-	Description coming soon!
+	Waits for 2 seconds. 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I wait 
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait$/ do
+  		  sleep 2
+		end
 
 	Then I wait
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits until there are no more progress bars.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I wait for progress
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait for progress$/ do
+  		  wait_for_element_does_not_exist("android.widget.ProgressBar")
+		end
 
 	Then I wait for progress
 
@@ -908,13 +1500,6 @@ Waiting
 
 .. admonition:: teststep android
 
-	Description coming soon!
-
-	Then I wait for "text or label" to appear
-
-
-.. admonition:: teststep android
-
 	This teststep will make the testrun wait until the label [UILabel] with the text appears, or any other element eg. button [UIButton] appears.
 
 	Examples:
@@ -924,68 +1509,204 @@ Waiting
 		Then I wait to see "Welcome"
 		Then I wait to see "Please log in:"
 
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Then /^I wait to see "([^\"]*)"$/ do |text|
+  		  wait_for_text(text)
+		end
+
 	Then I wait to see "text or label"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits until the label [UILabel] with the text appears, or any other element eg. button [UIButton] appears.
+
+	Examples: 
+
+	.. code-block:: cucumber 
+
+		Then I wait for "Hello" to appear 
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I wait for "([^\"]*)" to appear$/ do |text|
+  		  wait_for_text(text)
+		end
+
+	Then I wait for "text or label" to appear
+
+
+.. admonition:: teststep android
+
+	Waits up to 5 seconds for the specified text, or any other element e.g. [UIButton], to appear. 
+
+	Examples: 
+
+	.. code-block:: cucumber 
+
+			Then I wait up to 5 seconds for "Click me" to appear
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+			Then /^I wait up to (\d+) seconds for "([^\"]*)" to appear$/ do |timeout, text|
+  			  wait_for_text(text, timeout: timeout.to_i)
+			end
+
+	Related Teststeps:
+
+	- Then I wait up to 5 seconds to see "text or label"
 
 	Then I wait up to 5 seconds for "text or label" to appear
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits up to 5 seconds for the specified text, or any other element e.g. [UIButton], to appear. 
+
+	Examples: 
+
+	.. code-block:: cucumber 
+
+			Then I wait up to 5 seconds to see "Click me"
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+			Then /^I wait up to (\d+) seconds to see "([^\"]*)"$/ do |timeout, text|
+  			  wait_for_text(text, timeout: timeout.to_i)
+			end
+
+	Related Teststeps:
+
+	- Then I wait up to 5 seconds for "text or label" to appear
 
 	Then I wait up to 5 seconds to see "text or label"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits for a button with the specified accessibility label to apprear. 
+
+	Examples:
+
+	.. code-block:: cucumber
+		
+		Then I wait for the "login" button to appear
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait for the "([^\"]*)" button to appear$/ do |identifier|
+  		  wait_for_element_exists("android.widget.Button marked:'#{identifier}'");
+		end
 
 	Then I wait for the "id" button to appear
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits for a screen with the specified id to apprear. 
+
+	Examples:
+
+	.. code-block:: cucumber
+		
+		Then I wait for the "home" screen to appear
+
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait for the "([^\"]*)" screen to appear$/ do |activity_name|
+  		  wait_for_activity(activity_name)
+		end
 
 	Then I wait for the "id" screen to appear
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits for the view with the specified viewID to appear 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I wait for the view with id "checkout" to appear
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+		Then /^I wait for the view with id "([^\"]*)" to appear$/ do |id|
+		  wait_for_element_exists("* id:'#{id}'")
+		end
 
 	Then I wait for the view with id "viewId" to appear
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits up to 5 seconds for the screen with the specified id to appear (the test will move on if id is found before 5 seconds is up).
+
+	Examples: 
+
+	.. code-block:: cucumber 
+
+			Then I wait up to 5 seconds for the "checkout" screen to appear 
+
+	Implementation:
+
+	.. code-block:: ruby 
+
+			Then /^I wait upto (\d+) seconds for the "([^\"]*)" screen to appear$/ do |timeout, activity_name|
+			  wait_for_activity(activity_name, timeout: timeout.to_i)
+			end
+
+	Related Teststeps:
+
+	- Then I wait for the view with id "viewId" to appear
 
 	Then I wait up to 5 seconds for the "id" screen to appear
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Waits for 1 second. 
 
-	Then I wait upto 5 seconds for the "id" screen to appear
+	Examples:
 
+	.. code-block:: cucumber
 
-.. admonition:: teststep android
+		Then I wait for a second
 
-	Description coming soon!
+	Implementation:
+
+	.. code-block:: ruby
+
+		Then /^I wait for 1 second$/ do
+  		  sleep 1
+		end
+
+	Related Teststeps:
+
+	- Then I wait for 5 seconds 
 
 	Then I wait for a second
 
 
 .. admonition:: teststep android
 
-	This teststep will make the testrun wait for X seconds.
+	Waits for X seconds.
 
 	Examples:
 
@@ -995,7 +1716,19 @@ Waiting
 		Then I wait for 2 seconds
 		Then I wait for 2.4 seconds
 
-	Then I wait for 5 seconds
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I wait for (\d+) seconds$/ do |seconds|
+  		  sleep(seconds.to_i)
+		end
+
+	Related Teststeps:
+
+	- Then I wait for a second
+
+	Then I wait for X seconds
 
 
 Buttons
@@ -1003,21 +1736,64 @@ Buttons
 
 .. admonition:: teststep ios android
 
-	Description coming soon!
+	Simulates the user pressing the back button
+
+	Examples:
+
+	.. code-block:: cucumber
+
+			Then I go back
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I go back$/ do
+  		  touch("navigationItemButtonView first")
+  		  sleep(STEP_PAUSE)
+		end
 
 	Then I go back
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Simulates the user pressing the menu key
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I press the menu key
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I press the menu key$/ do
+  		  press_menu_button
+		end
 
 	Then I press the menu key
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Simulates the user pressing the enter button
+
+	Examples:
+
+	.. code-block:: cucumber
+
+			Then I press the enter button
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I press the enter button$/ do
+ 		  perform_action('send_key_enter')
+		end
 
 	Then I press the enter button
 
@@ -1035,23 +1811,66 @@ Gestures
 
 		Then I swipe left
 
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I swipe (left|right|up|down)$/ do |dir|
+  	  	  swipe(dir)
+  	   	  sleep(STEP_PAUSE)
+		end
+
 	Options:
 
 	You can use left, right up or down as parameters.
 
-	Then I swipe left
+	Then I swipe left/right/up/down
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Swipes a scroll view by index/number (and offset), or accessibilityLabel.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I swipe left on number 2
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I swipe (left|right|up|down) on number (\d+)$/ do |dir, index|
+  		  index = index.to_i
+  		  screenshot_and_raise "Index should be positive (was: #{index})" if (index<=0)
+  		  swipe(dir, {:query => "scrollView index:#{index-1}"})
+  		  sleep(STEP_PAUSE)
+		end
 
 	Then I swipe left on number 2
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Swipes a scroll view by index/number (and offset), or accessibilityLabel at a specified set of coordinates. Note that the coordinate system is for the element. 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I swipe left on number 2 at x 20 and y 10
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I swipe (left|right|up|down) on number (\d+) at x (\d+) and y (\d+)$/ do |dir, index, x, y|
+  		  index = index.to_i
+  		  screenshot_and_raise "Index should be positive (was: #{index})" if (index<=0)
+  		  swipe(dir, {:offset => {:x => x.to_i, :y => y.to_i}, :query => "scrollView index:#{index-1}"})
+  		  sleep(STEP_PAUSE)
+		end		
 
 	Then I swipe left on number 2 at x 20 and y 10
 
@@ -1064,7 +1883,16 @@ Gestures
 
 	.. code-block:: cucumber
 
-		Then I swipe left/right on "Morocco"
+		Then I swipe right on "Morocco"
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I swipe (left|right|up|down) on "([^\"]*)"$/ do |dir, mark|
+    	  swipe(dir, {:query => "view marked:'#{mark}'"})
+    	  sleep(STEP_PAUSE)
+		end
 
 	Options:
 
@@ -1074,12 +1902,29 @@ Gestures
 
 	- Then I swipe left/right
 
-	Then I swipe left on "accLabel"
+	Then I swipe left/right/up/down on "accLabel"
 
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Swipes a specified table cell by number
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I swipe on cell number 2
+
+	Implementation: 
+
+	.. code-block:: ruby 
+
+		Then /^I swipe on cell number (\d+)$/ do |index|
+  		  index = index.to_i
+  		  screenshot_and_raise "Index should be positive (was: #{index})" if (index<=0)
+		  cell_swipe({:query => "tableViewCell index:#{index-1}"})
+  		  sleep(STEP_PAUSE)
+		end
 
 	Then I swipe on cell number 2
 
@@ -1095,6 +1940,15 @@ Gestures
 		Then I pinch to zoom in
 		Then I pinch to zoom out
 
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I pinch to zoom (in|out)$/ do |in_out|
+  		  pinch(in_out)
+  		  sleep(STEP_PAUSE)
+		end
+
 	Options:
 
 	Parameter (zoom in) can also be zoom out
@@ -1104,7 +1958,26 @@ Gestures
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Performs a pinch gesture on the specified element. 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I pinch to zoom in on "image"
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I pinch to zoom (in|out) on "([^\"]*)"$/ do |in_out, name|
+  		  pinch(in_out,{:query => "view marked:'#{name}'"})
+  		  sleep(STEP_PAUSE)
+		end
+
+	Options:
+
+	Parameter (zoom in) can also be zoom out
 
 	Then I pinch to zoom in on "accLabel"
 
@@ -1120,6 +1993,15 @@ Gestures
 		Then I scroll down
 		Then I scroll up
 
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I scroll (left|right|up|down)$/ do |dir|
+  		  scroll("scrollView index:0", dir)
+  		  sleep(STEP_PAUSE)
+		end
+
 	Options:
 
 	The last parameter (down) can also be up, left and right.
@@ -1129,20 +2011,68 @@ Gestures
 
 .. admonition:: teststep ios
 
-	Description coming soon!
+	Attempts to scroll on the specified accessibility label.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I scroll down
+		Then I scroll up
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I scroll (left|right|up|down) on "([^\"]*)"$/ do |dir,name|
+  		  scroll("view marked:'#{name}'", dir)
+  		  sleep(STEP_PAUSE)
+		end
+
+	Options:
+
+	The last parameter (down) can also be up, left and right.
 
 	Then I scroll down on "accLabel"
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Selects the option with the specified id from the menu. 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I select "green" from the menu 
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I select "([^\"]*)" from the menu$/ do |identifier|
+ 		  select_options_menu_item(identifier)
+		end
 
 	Then I select "id" from the menu
 
 
 .. admonition:: teststep android
 
-	Description coming soon!
+	Drags from one point on the screen to another. Note the number of steps is a parameter that defines how many steps are in the swipe between the specified coordinates. 
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I drag from 50:100 to 50:250 moving with 20 steps
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I drag from (\d+):(\d+) to (\d+):(\d+) moving with (\d+) steps$/ do |from_x, from_y, to_x, to_y, steps|
+  		  perform_action('drag', from_x, to_x, from_y, to_y, steps)
+		end
 
 	Then I drag from 50:100 to 50:250 moving with 20 steps

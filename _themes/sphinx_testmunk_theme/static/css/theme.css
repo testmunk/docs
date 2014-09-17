@@ -1968,6 +1968,9 @@ big, small {
 
 .fa-android:before, .rst-content .admonition-teststep-android .admonition-title:before {
   content: "\f17b";
+  color: #90be4e;
+  margin-right: 9px;
+  margin-left: 21px;
 }
 
 .fa-linux:before {
@@ -2377,6 +2380,7 @@ big, small {
 
 .fa, .rst-content .admonition-title, .rst-content h1 .headerlink, .rst-content h2 .headerlink, .rst-content h3 .headerlink, .rst-content h4 .headerlink, .rst-content h5 .headerlink, .rst-content h6 .headerlink, .rst-content dl dt .headerlink, .icon, .wy-dropdown .caret, .wy-inline-validate.wy-inline-validate-success .wy-input-context, .wy-inline-validate.wy-inline-validate-danger .wy-input-context, .wy-inline-validate.wy-inline-validate-warning .wy-input-context, .wy-inline-validate.wy-inline-validate-info .wy-input-context {
   font-family: inherit;
+  /*margin-left: -21px;*/
 }
 .fa:before, .rst-content .admonition-title:before, .rst-content h1 .headerlink:before, .rst-content h2 .headerlink:before, .rst-content h3 .headerlink:before, .rst-content h4 .headerlink:before, .rst-content h5 .headerlink:before, .rst-content h6 .headerlink:before, .rst-content dl dt .headerlink:before, .icon:before, .wy-dropdown .caret:before, .wy-inline-validate.wy-inline-validate-success .wy-input-context:before, .wy-inline-validate.wy-inline-validate-danger .wy-input-context:before, .wy-inline-validate.wy-inline-validate-warning .wy-input-context:before, .wy-inline-validate.wy-inline-validate-info .wy-input-context:before {
   font-family: "FontAwesome";
@@ -2427,9 +2431,9 @@ a .fa, a .rst-content .admonition-title, .rst-content a .admonition-title, a .rs
 
 .wy-alert-title, .rst-content .admonition-title {
   color: white;
-  font-weight: bold;
+  /*font-weight: bold;*/
   display: block;
-  color: white;
+  color: #404040;
   background: #6ab0de;
   margin: -12px;
   padding: 6px 12px;
@@ -4537,8 +4541,18 @@ nav.stickynav {
 .rst-content .note .last, .rst-content .attention .last, .rst-content .caution .last, .rst-content .danger .last, .rst-content .error .last, .rst-content .hint .last, .rst-content .important .last, .rst-content .tip .last, .rst-content .warning .last, .rst-content .seealso .last, .rst-content .admonition-todo .last {
   margin-bottom: 0;
 }
+
+
+
+.rst-content .second-platform-icon {
+  margin-right: 0px;
+  margin-left: -42px;
+}
+
+
+
 .rst-content .admonition-title:before {
-  margin-right: 4px;
+  margin-right: 30px;
 }
 .rst-content .note, .rst-content .seealso {
   background: #f0e7f4;
@@ -4580,16 +4594,20 @@ nav.stickynav {
   padding-left: 12px;
   padding-right: 12px;
   background: #e4f2fb;
+  border-left: solid #369bdd 1px;
+  border-right: solid #369bdd 1px;
+  border-bottom: solid #369bdd 1px;
 }
 .rst-content .admonition-teststep .wy-alert-title, .rst-content .admonition-teststep .admonition-title, .rst-content .admonition-teststep-ios .wy-alert-title, .rst-content .admonition-teststep-ios .admonition-title, .rst-content .admonition-teststep-android .wy-alert-title, .rst-content .admonition-teststep-android .admonition-title, .rst-content .admonition-teststep-ios-android .wy-alert-title, .rst-content .admonition-teststep-ios-android .admonition-title, .rst-content .admonition-teststep-android-ios .wy-alert-title, .rst-content .admonition-teststep-android-ios .admonition-title {
-  background: #8dc6ec;
+  background: #ffffff;
+  border-top: solid #369bdd 1px;
 }
 .rst-content .admonition-teststep .wy-alert-title:hover, .rst-content .admonition-teststep .admonition-title:hover, .rst-content .admonition-teststep-ios .wy-alert-title:hover, .rst-content .admonition-teststep-ios .admonition-title:hover, .rst-content .admonition-teststep-android .wy-alert-title:hover, .rst-content .admonition-teststep-android .admonition-title:hover, .rst-content .admonition-teststep-ios-android .wy-alert-title:hover, .rst-content .admonition-teststep-ios-android .admonition-title:hover, .rst-content .admonition-teststep-android-ios .wy-alert-title:hover, .rst-content .admonition-teststep-android-ios .admonition-title:hover {
   background: #62b1e4;
 }
-.rst-content .second-platform-icon {
-  margin-right: 8px;
-}
+
+
+
 .rst-content .admonition table {
   border-color: rgba(0, 0, 0, 0.1);
 }
