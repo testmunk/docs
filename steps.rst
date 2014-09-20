@@ -552,16 +552,24 @@ Assertions
 
 		Then I should see "Welcome"
 
-	Implementation:
+	Implementation iOS:
 
 	.. code-block:: ruby
 
 		Then /^I should see "([^\"]*)"$/ do |expected_mark|
   		  res = (element_exists( "view marked:'#{expected_mark}'" ) or
          	 element_exists( "view text:'#{expected_mark}'"))
-  	      if not res
+         	 if not res
     		screenshot_and_raise "No element found with mark or text: #{expected_mark}"
   		  end
+		end
+
+	Implementation Android:
+
+	.. code-block:: ruby
+
+		Then /^I should see "([^\"]*)"$/ do |text|
+  		  wait_for_text(text, timeout: 10)
 		end
 
 	Then I should see "text or label"
@@ -577,7 +585,7 @@ Assertions
 
 		Then I should not see "Logout"
 
-	Implementation:
+	Implementation iOS:
 
 	.. code-block:: ruby
 
@@ -588,7 +596,15 @@ Assertions
 		   screenshot_and_raise "Expected no element with text nor accessibilityLabel: #{expected_mark}, found #{res.join(", ")}"
 	 	  end
 		end
-	
+
+	Implementation Android:
+
+	.. code-block:: ruby
+
+		Then /^I should not see "([^\"]*)"$/ do |text|
+ 		  wait_for_text_to_disappear(text, timeout: 10)
+		end
+
 	Related Teststeps:
 
 	- Then I should see "text or label"
@@ -1009,7 +1025,7 @@ Input
 
 		Then I enter "First name" into input field number 1
 
-	Implementation:
+	Implementation iOS:
 
 	.. code-block:: ruby 
 
@@ -1020,6 +1036,14 @@ Input
   		  wait_for_keyboard()
   		  keyboard_enter_text text
  		  sleep(STEP_PAUSE)
+		end
+
+	Implementation Android:
+
+	.. code-block:: ruby 
+
+		Then /^I enter "([^\"]*)" into input field number (\d+)$/ do |text, index|
+  		  enter_text("android.widget.EditText index:#{index.to_i-1}", text)
 		end
 
 	Then I enter "text" into input field number 1
@@ -1035,7 +1059,7 @@ Input
 
 		Then I clear "Email Address"
 
-	Implementation:
+	Implementation iOS:
 
 	.. code-block:: ruby 
 
@@ -1043,6 +1067,14 @@ Input
   		  msg = "When I clear <name>' will be deprecated because it is ambiguous - what should be cleared?"
   		  _deprecated('0.9.151', msg, :warn)
   		  clear_text("textField marked:'#{name}'")
+		end
+
+	Implementation Android:
+
+	.. code-block:: ruby 
+
+		Then /^I clear input field with id "([^\"]*)"$/ do |id|
+  		  clear_text("android.widget.EditText id:'#{id}'")
 		end
 
 	Then I clear "placeholder"
@@ -1058,7 +1090,7 @@ Input
 
 		Then I clear input field number 1
 
-	Implementation:
+	Implementation iOS:
 
 	.. code-block:: ruby 
 
@@ -1068,6 +1100,13 @@ Input
   		  clear_text("textField index:#{index-1}")
 		end
 
+	Implementation Android:
+
+	.. code-block:: ruby 
+
+		Then /^I clear input field with id "([^\"]*)"$/ do |id|
+  		  clear_text("android.widget.EditText id:'#{id}'")
+		end
 
 	Then I clear input field number 1
 
@@ -1449,6 +1488,29 @@ Waiting
 	Then I wait for 2 input fields
 
 
+.. admonition:: teststep ios
+
+	Waits for X seconds
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I wait for 1 second
+		Then I wait for 2 seconds
+		Then I wait for 2.4 seconds
+
+	Implementation: 
+
+	.. code-block:: ruby
+
+		Then /^I wait for ([\d\.]+) second(?:s)?$/ do |num_seconds|
+  	  	  num_seconds = num_seconds.to_f
+  		  sleep num_seconds
+		end
+
+	Then I wait for X seconds
+
 .. admonition:: teststep ios android
 
 	Waits for 2 seconds. 
@@ -1744,13 +1806,21 @@ Buttons
 
 			Then I go back
 
-	Implementation: 
+	Implementation iOS: 
 
 	.. code-block:: ruby
 
 		Then /^I go back$/ do
   		  touch("navigationItemButtonView first")
   		  sleep(STEP_PAUSE)
+		end
+
+	Implementation Android: 
+
+	.. code-block:: ruby
+
+		Then /^I go back$/ do
+  		  press_back_button
 		end
 
 	Then I go back
@@ -1811,13 +1881,21 @@ Gestures
 
 		Then I swipe left
 
-	Implementation: 
+	Implementation iOS: 
 
 	.. code-block:: ruby
 
 		Then /^I swipe (left|right|up|down)$/ do |dir|
   	  	  swipe(dir)
   	   	  sleep(STEP_PAUSE)
+		end
+
+	Implementation Android: 
+
+	.. code-block:: ruby
+
+		Then /^I swipe left$/ do
+  		  perform_action('swipe', 'left')
 		end
 
 	Options:
@@ -1982,33 +2060,6 @@ Gestures
 	Then I pinch to zoom in on "accLabel"
 
 
-.. admonition:: teststep ios android
-
-	Attempts to arbitrarily scroll down on the view.
-
-	Examples:
-
-	.. code-block:: cucumber
-
-		Then I scroll down
-		Then I scroll up
-
-	Implementation: 
-
-	.. code-block:: ruby
-
-		Then /^I scroll (left|right|up|down)$/ do |dir|
-  		  scroll("scrollView index:0", dir)
-  		  sleep(STEP_PAUSE)
-		end
-
-	Options:
-
-	The last parameter (down) can also be up, left and right.
-
-	Then I scroll down
-
-
 .. admonition:: teststep ios
 
 	Attempts to scroll on the specified accessibility label.
@@ -2034,6 +2085,41 @@ Gestures
 	The last parameter (down) can also be up, left and right.
 
 	Then I scroll down on "accLabel"
+
+
+.. admonition:: teststep ios android
+
+	Attempts to arbitrarily scroll down on the view.
+
+	Examples:
+
+	.. code-block:: cucumber
+
+		Then I scroll down
+		Then I scroll up
+
+	Implementation iOS: 
+
+	.. code-block:: ruby
+
+		Then /^I scroll (left|right|up|down)$/ do |dir|
+  		  scroll("scrollView index:0", dir)
+  		  sleep(STEP_PAUSE)
+		end
+
+	Implementation Android: 
+
+	.. code-block:: ruby
+	
+		Then /^I scroll down$/ do
+  		  scroll_down
+		end
+
+	Options:
+
+	The parameter (down) can also be up, left or right.
+
+	Then I scroll down
 
 
 .. admonition:: teststep android
