@@ -122,17 +122,18 @@ Curl example
 	  -F 'file=@iphone.ipa' \
 	  -F 'email=hello@testmunk.com' \
 	  -F 'autoStart=true' \
+	  -F 'public=true' \
 	  'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/Testmunk/testruns'
 
 Input
 *****
 
 + ``appName`` (Required): Name of your Testmunk app.
-+ ``file`` (Required): iOS app file. Only the format .ipa is allowed.
-+ ``userId`` (Optional): An email to this user will be sent after the testrun has been successfully created. Required if the email field is not set.
-+ ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Required if the userId field is not set. Needs to be an email address of an existing testmunk user.
++ ``file`` (Required): iOS or apk app file. Only the format .ipa and .apk allowed.
++ ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Needs to be an email address of an existing testmunk user.
 + ``testrunName`` (Optional): Name of the new testrun. If not specified, the name will get auto-generated, e.g. 'Testrun 10'
 + ``autoStart`` (Optional): true starts the testrun after upload.
++ ``public`` (Optional): All testruns URLs will automatically be public and can be shared with non testmunk users. Email notifications will also include the public link.
 
 Response
 ********
@@ -177,7 +178,6 @@ Input
 *****
 
 + ``testrunId`` (Required).
-+ ``userId`` (Optional): An email to this user will be sent after the testrun has been successfully created. Required if the email field is not set.
 + ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Required if the userId field is not set. Needs to be an email address of an existing testmunk user.
 
 .. code-block:: javascript
