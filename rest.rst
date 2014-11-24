@@ -106,7 +106,7 @@ Testruns API
 Create a new testrun
 ~~~~~~~~~~~~~~~~~~~~
 
-Creates a new testrun based on an ``.ipa`` file. The testrun is automatically started if you set the parameter ``autoStart=true``. Request data needs to be sent as ``multipart/form-data``.
+Creates a new testrun based on an ``.ipa`` or ``.apk`` file. The testrun is automatically started if you set the parameter ``autoStart=true``. Request data needs to be sent as ``multipart/form-data``.
 
 ::
 
@@ -151,6 +151,25 @@ Response
 	  "name":"Testrun 10",
 	  "status":"NotStarted"
 	}
+
+Upload Testcases
+~~~~~~~~~~~~~~~~
+
+Updates the testcases based on an .zip file. Zip file should contain the zipped features folder, as you would upload to our website. Request data needs to be sent as multipart/form-data. The testcases currently on the server will get replaced with the ones uploaded and shall be used in future testruns.
+
+::
+
+	POST /apps/:appName/testcases
+
+Curl Example
+************
+
+.. code-block:: console
+
+	$ curl \
+	 -H 'Accept: application/vnd.testmunk.v1+json' \
+	 -F 'file=@features.zip' \
+	 'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/Testmunk/testcases'
 
 Start an existing testrun
 ~~~~~~~~~~~~~~~~~~~~~~~~~
