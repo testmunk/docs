@@ -174,7 +174,7 @@ Curl Example
 Selecting Devices to Test On
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To select devices to test on, go to testmunk.com and navigate to ``Account Settings`` > ``REST API`` as seen here: https://cloud.githubusercontent.com/assets/9891442/5175494/7bd41172-73f0-11e4-965c-e7bf3c025a35.png
+To select devices to test on, go to testmunk.com and navigate to ``Account Settings`` > ``REST API``.
 
 Start an existing testrun
 ~~~~~~~~~~~~~~~~~~~~~~~~~
