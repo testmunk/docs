@@ -235,6 +235,8 @@ In order to write a second testcase write a new testscenario. For example:
 		Then I press the "See details" button
 		Then I should not see "Something"
 
+Once you have writen your testcases, it is necessary to save them. Running a testrun requires the ``feature`` folder (that ``my_first.feature`` is in) to be compressed to a ``.zip`` file. If you are using the testmunk website to run testcases, then the ``.apk`` file chosen should be your app, and the ``.zip`` file chosen should be the ``feature`` folder you just created.  
+
 .. HINT::
 	For writing testcases, we recommend using `Sublime Text 2 <http://www.sublimetext.com/>`_ with the `Cucumber syntax highlighting plugin <http://makandracards.com/ninjaconcept/9233-how-to-use-cucumber-together-with-sublime-text-2-editor>`_.
 
