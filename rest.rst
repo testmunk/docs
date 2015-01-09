@@ -100,6 +100,41 @@ You can decide how to handle errors in your code based on the HTTP status code. 
 
 - ``500 Internal Server Error``: We messed up somewhere. We’ve been notified of the issue, and our engineering team will look into it.
 
+Devices API
+------------
+
+Get available devices
+~~~~~~~~~~~~~~~~~~~~~
+
+Will return all available devices for your organisation, in JSON format.
+
+::
+
+	GET /devices
+
+Curl example
+************
+
+.. code-block:: console
+
+    curl -X GET \
+      -H 'Accept: application/vnd.testmunk.v1+json' \
+      'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/devices?platform=ios'
+
+Input
+*****
+
++ ``platform`` (Optional): Either ``ios`` or ``android``.
+
+Output
+******
+
+The results come in pairs of ``[device name, OS version]``:
+
+.. code-block:: console
+
+    [["ipod-5-A","7.1"],["iphone-4s-A","7.1"],["ipad-3-B","8.1"],["iphone-6-A","8.1"]]
+
 Testruns API
 ------------
 
@@ -123,6 +158,7 @@ Curl example
 	  -F 'email=hello@testmunk.com' \
 	  -F 'autoStart=true' \
 	  -F 'public=true' \
+	  -F 'devices=ipod-5-A,iphone-4s-A,iphone-6-A' \
 	  'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/Testmunk/testruns'
 
 Input
@@ -134,6 +170,7 @@ Input
 + ``testrunName`` (Optional): Name of the new testrun. If not specified, the name will get auto-generated, e.g. 'Testrun 10'
 + ``autoStart`` (Optional): true starts the testrun after upload.
 + ``public`` (Optional): All testruns URLs will automatically be public and can be shared with non testmunk users. Email notifications will also include the public link.
++ ``devices`` (Optional): A comma separated list of ``device names``. You can get the device names from the `Devices API`_ endpoint. **You only need to set the device names, not the OS version**.
 
 Response
 ********
