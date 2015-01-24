@@ -100,6 +100,84 @@ You can decide how to handle errors in your code based on the HTTP status code. 
 
 - ``500 Internal Server Error``: We messed up somewhere. We’ve been notified of the issue, and our engineering team will look into it.
 
+App API
+------------
+
+List current apps for your organisation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+	GET /apps
+
+Curl example
+************
+
+.. code-block:: console
+
+    curl -X GET \
+      -H 'Accept: application/vnd.testmunk.v1+json' \
+      'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps'
+
+Output
+******
+
+.. code-block:: javascript
+
+    [
+        {
+            "id": "547f90d9a0eed17d87987355",
+            "createdAt": "2014-12-03T22:38:17Z",
+            "organisationId": "531df352a4b0c9d6f7b7bdfa",
+            "name": "IOS-project"
+        },
+        {
+            "id": "54b5a1d4e4b0ed04cd79f654",
+            "createdAt": "2015-01-13T22:53:08Z",
+            "organisationId": "531df352a4b0c9d6f7b7bdfa",
+            "name": "Android-project"
+        }
+    ]
+
+Create a new App
+~~~~~~~~~~~~~~~~~
+
+Creates a new app based on the provided name.
+
+::
+
+	POST /apps
+
+Curl example
+************
+
+.. code-block:: console
+
+    curl -X POST \
+        -H 'Accept: application/vnd.testmunk.v1+json' \
+        -H 'Content-Type: application/json' \
+        -d '{"appName":"My-new-project"}' \
+        "http://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@staging.testmunk.com/api/apps"
+
+Input
+*****
+
++ ``appName`` (Required): The new name for your app, has to be unique.
+
+Output
+******
+
+The results come in pairs of ``[device name, OS version]``:
+
+.. code-block:: javascript
+
+    {
+        "id":"54c427a8e4b0dee6ac5d89r4",
+        "createdAt":"2015-01-24T23:15:52Z",
+        "organisationId":"531pf381e7b0z9d6f7b7bdfb",
+        "name":"My-new-project"
+    }
+
 Devices API
 ------------
 
@@ -131,7 +209,7 @@ Output
 
 The results come in pairs of ``[device name, OS version]``:
 
-.. code-block:: console
+.. code-block:: javascript
 
     [["ipod-5-A","7.1"],["iphone-4s-A","7.1"],["ipad-3-B","8.1"],["iphone-6-A","8.1"]]
 
@@ -211,7 +289,7 @@ Curl Example
 Selecting Devices to Test On
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To select devices to test on, go to testmunk.com and navigate to ``Account Settings`` > ``REST API``.
+To select devices to test on, go to testmunk.com and navigate to ``Account Settings`` > ``REST API``. Or you can also set the devices the moment you create a Testrun using the `Create a new testrun`_ endpoint.
 
 Start an existing testrun
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -265,3 +343,134 @@ Response
 	  "numSuccess":0,
 	  "numFailed":0
 	}
+
+
+Get testrun status
+~~~~~~~~~~~~~~~~~~
+
+Returns information about a testrun with the specified ID, if it exists.  Useful to get the status of your testrun (failed, success)
+
+::
+
+	GET /apps/:appName/testruns/:testrunId
+
+Curl example
+************
+
+.. code-block:: console
+
+	$ curl \
+	  -X GET \
+	  -H 'Accept: application/vnd.testmunk.v1+json' \
+	  'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/AppName/testruns/54b5552b380438f8tyb21e3c'
+
+Input
+*****
+
++ ``testrunId`` (Required).
++ ``appName`` (Required): Name of your Testmunk app.
+
+Response
+********
+
+::
+
+	Status: 200 Ok
+
+.. code-block:: javascript
+
+    {
+        "id": "54b5552b380438f8tyb21e3c",
+        "name": "Testrun X",
+        "app": "AppName",
+        "status": "Success",
+        "counts": {
+            "numSuccess": 1,
+            "numFailed": 0,
+            "numSkipped": 0
+        },
+        "numTestcases": 1,
+        "startExecutionTime": "2015-01-13T17:26:19Z",
+        "endTime": "2015-01-13T17:26:31Z",
+        "platform": "Android",
+        "deviceGroups": [
+            "lg-nexus-5-A"
+        ],
+        "stoppedByUser": false
+    }
+
+Get list of testruns
+~~~~~~~~~~~~~~~~~~~~
+
+Returns a list of all the testruns for the given App, if it exists.
+
+::
+
+	GET /apps/:appName/testruns
+
+*******
+
+Curl example
+************
+
+.. code-block:: console
+
+	$ curl \
+	  -X GET \
+	  -H 'Accept: application/vnd.testmunk.v1+json' \
+	  'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/AppName/testruns'
+
+Input
+*****
+
++ ``appName`` (Required): Name of your Testmunk app.
+
+Response
+********
+
+::
+
+	Status: 200 Ok
+
+.. code-block:: javascript
+
+    [
+        {
+            "id": "54b5c59b3004e8bd92643e67",
+            "name": "Testrun Y",
+            "app": "AppName",
+            "status": "Failed",
+            "counts": {
+                "numSuccess": 2,
+                "numFailed": 5,
+                "numSkipped": 0
+            },
+            "numTestcases": 7,
+            "startExecutionTime": "2015-01-17T01:36:02Z",
+            "endTime": "2015-01-18T01:56:12Z",
+            "platform": "Android",
+            "deviceGroups": [
+                "lg-nexus-5-A"
+            ],
+            "stoppedByUser": false
+        },
+        {
+            "id": "54b5552b380438f8tyb21e3c",
+            "name": "Testrun X",
+            "app": "AppName",
+            "status": "Success",
+            "counts": {
+                "numSuccess": 1,
+                "numFailed": 0,
+                "numSkipped": 0
+            },
+            "numTestcases": 1,
+            "startExecutionTime": "2015-01-13T17:26:19Z",
+            "endTime": "2015-01-13T17:26:31Z",
+            "platform": "Android",
+            "deviceGroups": [
+                "lg-nexus-5-A"
+            ],
+            "stoppedByUser": false
+        }
+    ]
