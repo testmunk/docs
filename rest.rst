@@ -157,7 +157,7 @@ Curl example
         -H 'Accept: application/vnd.testmunk.v1+json' \
         -H 'Content-Type: application/json' \
         -d '{"appName":"My-new-project"}' \
-        "http://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@staging.testmunk.com/api/apps"
+        "http://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/api/apps"
 
 Input
 *****
