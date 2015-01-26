@@ -289,7 +289,7 @@ Curl Example
 Selecting Devices to Test On
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To select devices to test on, go to testmunk.com and navigate to ``Account Settings`` > ``REST API``. Or you can also set the devices the moment you create a Testrun using the `Create a new testrun`_ endpoint.
+To select devices to test on, go to testmunk.com and navigate to ``Account Settings`` > ``REST API``. Or you can also set the devices the moment you create a testrun using the `Create a new testrun`_ endpoint.
 
 Start an existing testrun
 ~~~~~~~~~~~~~~~~~~~~~~~~~
