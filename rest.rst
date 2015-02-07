@@ -259,13 +259,24 @@ Response
 
 .. code-block:: javascript
 
-	{
-	  "id":"52299330e4b07118a7c2cad8",
-	  "createdAt":"2013-09-06T08:32:51Z",
-	  "appId":"510c4e26edaa8fcf7872032a",
-	  "name":"Testrun 10",
-	  "status":"NotStarted"
-	}
+    {
+        "id":"52299330e4b07118a7c2cad8",
+        "name":"Testrun 10",
+        "app":"Testmunk",
+        "status":"NotStarted",
+        "counts":{
+            "numSuccess":0,
+            "numFailed":0,
+            "numSkipped":0
+        },
+        "createdAt":"2015-02-07T00:43:17Z",
+        "platform":"iOS",
+        "devices":[
+            "ipod-5-A,iphone-4s-A,iphone-6-A"
+        ],
+        "testcases":1,
+        "stoppedByUser":false
+    }
 
 Upload Testcases
 ~~~~~~~~~~~~~~~~
@@ -294,7 +305,7 @@ To select devices to test on, go to testmunk.com and navigate to ``Account Setti
 Start an existing testrun
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Starts an existing testrun based on the testrunId. The testrun need to have the status ``NotStarted``.
+Starts an existing testrun based on the testrunId. The testrun need to have the status ``NotStarted`` (setting autoStart=false when creating the testrun).
 
 ::
 
@@ -334,15 +345,24 @@ Response
 
 .. code-block:: javascript
 
-	{
-	  "id":"52299330e4b07118a7c2cad8",
-	  "createdAt":"2013-09-06T08:32:51Z",
-	  "appId":"510c4e28edaa8fcf7912032a",
-	  "name":"Testrun 10",
-	  "status":"Waiting",
-	  "numSuccess":0,
-	  "numFailed":0
-	}
+    {
+        "id":"52299330e4b07118a7c2cad8",
+        "name":"Testrun 10",
+        "app":"Testmunk",
+        "status":"Waiting",
+        "counts":{
+            "numSuccess":0,
+            "numFailed":0,
+            "numSkipped":0
+        },
+        "createdAt":"2015-02-07T00:43:17Z",
+        "platform":"iOS",
+        "devices":[
+            "ipod-5-A,iphone-4s-A,iphone-6-A"
+        ],
+        "testcases":1,
+        "stoppedByUser":false
+    }
 
 
 Get testrun status
@@ -362,7 +382,7 @@ Curl example
 	$ curl \
 	  -X GET \
 	  -H 'Accept: application/vnd.testmunk.v1+json' \
-	  'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/AppName/testruns/54b5552b380438f8tyb21e3c'
+	  'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/Testmunk/testruns/54d54fe03004286c71cb99e0'
 
 Input
 *****
@@ -380,23 +400,25 @@ Response
 .. code-block:: javascript
 
     {
-        "id": "54b5552b380438f8tyb21e3c",
-        "name": "Testrun X",
-        "app": "AppName",
-        "status": "Success",
-        "counts": {
-            "numSuccess": 1,
-            "numFailed": 0,
-            "numSkipped": 0
+        "id":"54d54fe03004286c71cb99e0",
+        "name":"Testrun 100",
+        "app":"Testmunk",
+        "status":"Success",
+        "counts":{
+            "numSuccess":1,
+            "numFailed":0,
+            "numSkipped":0
         },
-        "numTestcases": 1,
-        "startExecutionTime": "2015-01-13T17:26:19Z",
-        "endTime": "2015-01-13T17:26:31Z",
-        "platform": "Android",
-        "deviceGroups": [
+        "createdAt":"2015-02-06T23:36:06Z",
+        "startUserTime":"2015-02-06T23:40:19Z",
+        "startExecutionTime":"2015-02-06T23:41:09Z",
+        "endTime":"2015-02-06T23:41:52Z",
+        "platform":"Android",
+        "devices":[
             "lg-nexus-5-A"
         ],
-        "stoppedByUser": false
+        "testcases":1,
+        "stoppedByUser":false
     }
 
 Get list of testruns
@@ -436,41 +458,45 @@ Response
 
     [
         {
-            "id": "54b5c59b3004e8bd92643e67",
-            "name": "Testrun Y",
-            "app": "AppName",
-            "status": "Failed",
-            "counts": {
-                "numSuccess": 2,
-                "numFailed": 5,
-                "numSkipped": 0
+            "id":"54d54fe03004286c71cb99e0",
+            "name":"Testrun 100",
+            "app":"Testmunk",
+            "status":"Success",
+            "counts":{
+                "numSuccess":1,
+                "numFailed":0,
+                "numSkipped":0
             },
-            "numTestcases": 7,
-            "startExecutionTime": "2015-01-17T01:36:02Z",
-            "endTime": "2015-01-18T01:56:12Z",
-            "platform": "Android",
-            "deviceGroups": [
+            "createdAt":"2015-02-06T23:36:06Z",
+            "startUserTime":"2015-02-06T23:40:19Z",
+            "startExecutionTime":"2015-02-06T23:41:09Z",
+            "endTime":"2015-02-06T23:41:52Z",
+            "platform":"Android",
+            "devices":[
                 "lg-nexus-5-A"
             ],
-            "stoppedByUser": false
+            "testcases":1,
+            "stoppedByUser":false
         },
         {
-            "id": "54b5552b380438f8tyb21e3c",
-            "name": "Testrun X",
-            "app": "AppName",
-            "status": "Success",
-            "counts": {
-                "numSuccess": 1,
-                "numFailed": 0,
-                "numSkipped": 0
+            "id":"34d54fe04904286c71cb87a1",
+            "name":"Testrun 99",
+            "app":"Testmunk",
+            "status":"Success",
+            "counts":{
+                "numSuccess":2,
+                "numFailed":0,
+                "numSkipped":0
             },
-            "numTestcases": 1,
-            "startExecutionTime": "2015-01-13T17:26:19Z",
-            "endTime": "2015-01-13T17:26:31Z",
-            "platform": "Android",
-            "deviceGroups": [
+            "createdAt":"2015-01-06T23:36:06Z",
+            "startUserTime":"2015-01-06T23:40:19Z",
+            "startExecutionTime":"2015-01-06T23:41:09Z",
+            "endTime":"2015-01-06T23:41:52Z",
+            "platform":"Android",
+            "devices":[
                 "lg-nexus-5-A"
             ],
-            "stoppedByUser": false
+            "testcases":2,
+            "stoppedByUser":false
         }
     ]
