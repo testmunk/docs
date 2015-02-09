@@ -233,6 +233,7 @@ Curl example
 	$ curl \
 	  -H 'Accept: application/vnd.testmunk.v1+json' \
 	  -F 'file=@iphone.ipa' \
+		-F 'file=@features.zip' \
 	  -F 'email=hello@testmunk.com' \
 	  -F 'autoStart=true' \
 	  -F 'public=true' \
@@ -244,6 +245,7 @@ Input
 
 + ``appName`` (Required): Name of your Testmunk app.
 + ``file`` (Required): iOS or apk app file. Only the format .ipa and .apk allowed.
++ ``testcases`` (Required): Zip file containing the features folder. Zip file should contain the zipped features folder, as you would upload to our website.
 + ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Needs to be an email address of an existing testmunk user.
 + ``testrunName`` (Optional): Name of the new testrun. If not specified, the name will get auto-generated, e.g. 'Testrun 10'
 + ``autoStart`` (Optional): true starts the testrun after upload.
@@ -277,25 +279,6 @@ Response
         "testcases":1,
         "stoppedByUser":false
     }
-
-Upload Testcases
-~~~~~~~~~~~~~~~~
-
-Updates the testcases based on an .zip file. Zip file should contain the zipped features folder, as you would upload to our website. Request data needs to be sent as multipart/form-data. The testcases currently on the server will get replaced with the ones uploaded and shall be used in future testruns.
-
-::
-
-	POST /apps/:appName/testcases
-
-Curl Example
-************
-
-.. code-block:: console
-
-	$ curl \
-	 -H 'Accept: application/vnd.testmunk.v1+json' \
-	 -F 'file=@features.zip' \
-	 'https://AQS0LCTvCv6mTwod5PwtU2i1JVY2J6rW@api.testmunk.com/apps/Testmunk/testcases'
 
 Selecting Devices to Test On
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
