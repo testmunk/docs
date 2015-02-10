@@ -233,7 +233,7 @@ Curl example
 	$ curl \
 	  -H 'Accept: application/vnd.testmunk.v1+json' \
 	  -F 'file=@iphone.ipa' \
-		-F 'file=@features.zip' \
+    -F 'testcases=@features.zip' \
 	  -F 'email=hello@testmunk.com' \
 	  -F 'autoStart=true' \
 	  -F 'public=true' \
