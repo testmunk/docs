@@ -4838,3 +4838,12 @@ nav.stickynav {
 span[id*='MathJax-Span'] {
   color: #404040;
 }
+
+.chatlio-widget {
+	width: 280px !important;
+    font-size: 14px !important;
+}
+
+.chatlio-widget .title-bar a {
+    font-size: 15px !important;
+ }
