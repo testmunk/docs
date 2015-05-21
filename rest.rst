@@ -246,7 +246,7 @@ Input
 + ``appName`` (Required): Name of your Testmunk app.
 + ``file`` (Required): iOS or apk app file. Only the format .ipa and .apk allowed.
 + ``testcases`` (Required): Zip file containing the features folder. Zip file should contain the zipped features folder, as you would upload to our website.
-+ ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Needs to be an email address of an existing testmunk user.
++ ``email`` (Required): An email address of an account associated with the API key.
 + ``testrunName`` (Optional): Name of the new testrun. If not specified, the name will get auto-generated, e.g. 'Testrun 10'
 + ``autoStart`` (Optional): true starts the testrun after upload.
 + ``public`` (Optional): All testruns URLs will automatically be public and can be shared with non testmunk users. Email notifications will also include the public link.
@@ -311,7 +311,7 @@ Input
 *****
 
 + ``testrunId`` (Required).
-+ ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Required if the userId field is not set. Needs to be an email address of an existing testmunk user.
++ ``email`` (Required): An email address of an account associated with the API key.
 
 .. code-block:: javascript
 
