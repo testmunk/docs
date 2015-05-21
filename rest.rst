@@ -100,6 +100,11 @@ You can decide how to handle errors in your code based on the HTTP status code. 
 
 - ``500 Internal Server Error``: We messed up somewhere. We’ve been notified of the issue, and our engineering team will look into it.
 
+Email notifications
+~~~~~~~~~~~
+Results of your testruns will be send as an email notification. You can define the recipients under Notifications tab in Account Settings on the `Testmunk Dashboard <https://testmunk.com/dashboard>`_.
+
+
 App API
 ------------
 
