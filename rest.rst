@@ -100,6 +100,11 @@ You can decide how to handle errors in your code based on the HTTP status code. 
 
 - ``500 Internal Server Error``: We messed up somewhere. We’ve been notified of the issue, and our engineering team will look into it.
 
+Email notifications
+~~~~~~~~~~~
+Results of your testruns will be sent as email notifications. You can specify the recipients within the notifications tab under your Account Settings on the `Testmunk Dashboard <https://testmunk.com/dashboard>`_.
+
+
 App API
 ------------
 
@@ -246,7 +251,7 @@ Input
 + ``appName`` (Required): Name of your Testmunk app.
 + ``file`` (Required): iOS or apk app file. Only the format .ipa and .apk allowed.
 + ``testcases`` (Required): Zip file containing the features folder. Zip file should contain the zipped features folder, as you would upload to our website.
-+ ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Needs to be an email address of an existing testmunk user.
++ ``email`` (Required): An email address that is associated with your testmunk account and API key. This can either be your primary email that you registered on testmunk or a team member you invited to the account.
 + ``testrunName`` (Optional): Name of the new testrun. If not specified, the name will get auto-generated, e.g. 'Testrun 10'
 + ``autoStart`` (Optional): true starts the testrun after upload.
 + ``public`` (Optional): All testruns URLs will automatically be public and can be shared with non testmunk users. Email notifications will also include the public link.
@@ -311,7 +316,7 @@ Input
 *****
 
 + ``testrunId`` (Required).
-+ ``email`` (Optional): An email to this address will be sent after the testrun has been successfully executed. Required if the userId field is not set. Needs to be an email address of an existing testmunk user.
++ ``email`` (Required): An email address that is associated with your testmunk account and API key. This can either be your primary email that you registered on testmunk or a team member you invited to the account.
 
 .. code-block:: javascript
 
