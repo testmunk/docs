@@ -102,7 +102,7 @@ You can decide how to handle errors in your code based on the HTTP status code. 
 
 Email notifications
 ~~~~~~~~~~~
-Results of your testruns will be send as an email notification. You can define the recipients under Notifications tab in Account Settings on the `Testmunk Dashboard <https://testmunk.com/dashboard>`_.
+Results of your testruns will be sent as email notifications. You can specify the recipients within the notifications tab under your Account Settings on the `Testmunk Dashboard <https://testmunk.com/dashboard>`_.
 
 
 App API
@@ -251,7 +251,7 @@ Input
 + ``appName`` (Required): Name of your Testmunk app.
 + ``file`` (Required): iOS or apk app file. Only the format .ipa and .apk allowed.
 + ``testcases`` (Required): Zip file containing the features folder. Zip file should contain the zipped features folder, as you would upload to our website.
-+ ``email`` (Required): An email address of an account associated with the API key.
++ ``email`` (Required): An email address that is associated with your testmunk account and API key. This can either be your primary email that you registered on testmunk or a team member you invited to the account.
 + ``testrunName`` (Optional): Name of the new testrun. If not specified, the name will get auto-generated, e.g. 'Testrun 10'
 + ``autoStart`` (Optional): true starts the testrun after upload.
 + ``public`` (Optional): All testruns URLs will automatically be public and can be shared with non testmunk users. Email notifications will also include the public link.
@@ -316,7 +316,7 @@ Input
 *****
 
 + ``testrunId`` (Required).
-+ ``email`` (Required): An email address of an account associated with the API key.
++ ``email`` (Required): An email address that is associated with your testmunk account and API key. This can either be your primary email that you registered on testmunk or a team member you invited to the account.
 
 .. code-block:: javascript
 
