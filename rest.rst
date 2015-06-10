@@ -9,11 +9,18 @@ Introduction
 
 The testmunk API provides a RESTful interface for your data on testmunk. It is the starting point for anyone who would like to integrate testmunk into another service, e.g. a Continuous Integration Server.
 
-You can use the API to:
+You can use the API to interact with:
 
-- Upload an app
-- Upload an app and automatically start that testrun
-- Start an existing testrun
+- Apps
+ - `List current apps for your organisation`_
+ - `Create a new App`_
+- Devices
+ - `Get available devices`_
+- Testruns 
+ - `Create a new testrun`_
+ - `Start an existing testrun`_
+ - `Get testrun status`_
+ - `Get list of testruns`_
 
 Schema
 ~~~~~~
