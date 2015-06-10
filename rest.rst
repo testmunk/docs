@@ -7,7 +7,7 @@ API Overview
 Introduction
 ~~~~~~~~~~~~
 
-The testmunk API provides a RESTful interface for your data on testmunk. It is the starting point for anyone who would like to integrate testmunk into another service, e.g. a Continuous Integration Server.
+The testmunk API provides a RESTful interface (adhering to REST architectural constraints) for your data on testmunk. It is the starting point for anyone who would like to integrate testmunk into another service, for example Continuous Integration Servers such as `Jenkins`_  or Travis. 
 
 You can use the API to:
 
@@ -488,3 +488,101 @@ Response
             "stoppedByUser":false
         }
     ]
+
+
+Continuous Integration
+----------------------
+
+Testmunk can easily be integrated into your development process. An example of how to integrate testmunk with Jenkins is provided below.
+
+Jenkins
+~~~~~~~~~~~~~~~~~~~~
+
+Jenkins is a widely used, extensible open source continuous integration server.
+
+Configuration
+*************
+
+1. Create new Item
+
+ First, we will select Freestyle project  as the project template for the Android app that we will checkout from a GitHub repository.
+
+ .. image:: /_static/img/jenkins_1.png
+
+2. Configure a repository to get the latest source code of your app
+
+ Jenkins can integrate with many different types of source control management systems, such as CVS, SVN, and Git. For our purpose we will use Git as an example. The TMSample app that we will test is available in `GitHub repository <https://github.com/testmunk/TMSampleAndroid>`_. In the image below, you can see us linking the app. The up to date code will be taken from the master branch. You can then change it depending on your needs and testing cycle.    
+
+ .. image:: /_static/img/jenkins_2.png
+
+.. HINT::
+
+    1. Go to Manage Plugins
+    
+     .. image:: /_static/img/jenkins_3.png
+
+    2. Switch to Available plugins and find GIT plugin and GIT client plugin
+
+     .. image:: /_static/img/jenkins_4.png
+     .. image:: /_static/img/jenkins_6.png
+
+    3. Select and install it. Afterwards restart Jenkins (go to: [jenkins_url]/restart)
+    
+    How to install your Git plugin
+
+3. Setup build steps  
+ 
+ .. image:: /_static/img/jenkins_5.png
+
+ Gradle is the build tool that is suggested by Google. It is used in Android Studio IDE. Here, we use clean and build tasks to create an .apk that will be later tested on Testmunk. 
+
+.. HINT::
+    
+    You can use xcodebuild to build your iOS app the same way we use gradlew here
+
+4. The last build step calls `Testruns API`_ and creates a new testrun with the .apk and features.zip that are in the folder. Test results will be sent to all team members including lukas@testmunk.com  
+
+ .. image:: /_static/img/testmunk_mail.png 
+
+.. HINT::
+
+    It’s common to keep tests in a repository. At Testmunk, we work with GitHub Pull Requests to ensure our test code retains the best possible quality. All software development best practises apply here as well.
+
+    Here is a script (bash) you can use as a build task to get the latest features from your repository, then zip them to features.zip. Add this build task before starting a new testrun.
+
+    .. code-block:: console
+
+        fetch_tests()
+        {
+           printf "\n## Fetching tests from $GITHUB_URL ##\n"
+
+
+           curl -sL --user "$GITHUB_USERNAME:$GITHUB_PASSWORD" "$GITHUB_URL" > "$TESTS_PATH"
+        }
+
+
+        prepare_tests()
+        {
+           printf "\n## Preparing features.zip ##\n" 
+
+
+           unzip "$TESTS_PATH"
+           mv "$GITHUB_REPO_NAME/features" "features"
+           zip -r "$FEATURES_PATH" "features/"
+        }
+
+        fetch_tests
+        prepare_tests
+
+    where the example environment is as follows:
+
+    .. code-block:: console    
+
+        GITHUB_USERNAME="lukas"
+        GITHUB_PASSWORD="xxx"
+        GITHUB_URL="https://github.com/testmunk/tm_tests/archive/master.zip"
+        GITHUB_REPO_NAME="testcases_tm"
+        TESTS_PATH="tests.zip"
+        FEATURES_PATH="features.zip"
+
+    Getting testcases from GitHub repository
