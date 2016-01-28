@@ -5,7 +5,7 @@ var hideMark = "fa-chevron-up";
 var showMark = "fa-chevron-down";
 
 function toggleAdmBody() {
-    var body = $(this).children().not(".admonition-title");
+    var body = $(this).closest('.admonition').children().not(".admonition-title");
 
     if (body.is(":visible")){
         body.hide(300);
@@ -84,7 +84,7 @@ $( document ).ready(function() {
     $("div.admonition").each(toggleAdmBody);
 
     // Clicking the title shows the body of the admonition
-    $(".admonition").click(toggleAdmBody);
+    $(".admonition .admonition-title").click(toggleAdmBody);
 
     // Make all external links open in a new window
     $("a.reference.external").attr("target", "_blank");

@@ -2438,6 +2438,7 @@ a .fa, a .rst-content .admonition-title, .rst-content a .admonition-title, a .rs
   margin: -12px;
   padding: 6px 12px;
   margin-bottom: 12px;
+  cursor: pointer;
 }
 
 .wy-alert.wy-alert-danger, .rst-content .wy-alert-danger.note, .rst-content .wy-alert-danger.attention, .rst-content .wy-alert-danger.caution, .rst-content .danger, .rst-content .error, .rst-content .wy-alert-danger.hint, .rst-content .wy-alert-danger.important, .rst-content .wy-alert-danger.tip, .rst-content .wy-alert-danger.warning, .rst-content .wy-alert-danger.seealso, .rst-content .wy-alert-danger.admonition-todo {
