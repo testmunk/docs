@@ -54,7 +54,7 @@ In case you don't have the right permissions, please execute:
 
 	$ sudo gem install calabash-cucumber
 
-.. DANGER:: 
+.. DANGER::
 
 	If you get an error that reads ``...can't find header files for ruby at /System/...``, that means you do not have the Xcode command-line tools correctly installed. Make sure you have Xcode installed (or download it `here <https://itunes.apple.com/us/app/xcode/id497799835>`_) and then run this command in Terminal:
 
@@ -64,7 +64,7 @@ In case you don't have the right permissions, please execute:
 
 	Header files can't be found
 
-.. DANGER:: 
+.. DANGER::
 	If you are getting an error that says "clang: error: unknown argument: '-multiply_definedsuppress'", you must run these 2 commands instead:
 
 	.. code-block:: console
@@ -79,6 +79,21 @@ In case you don't have the right permissions, please execute:
 
 Installing framework in Xcode project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+	<video controls style="width: 100%;">
+		<source src="https://player.vimeo.com/external/156324089.hd.mp4?s=dbec3e112448ed7f79e67ffa38f78b4fe1554b5f&profile_id=113" type="video/mp4">
+		Your browser does not support the video tag.
+	</video>
+	<p>
+		<a href="https://vimeo.com/156324089" target="_blank">Watch this video on Vimeo</a>
+	</p>
+
+
+|
+|
+
 
 Creating a new build target
 ***************************
@@ -187,7 +202,7 @@ A more advanced way of inspecting elements on the view is using the Calabash con
 This will start our test application in the iOS simulator. then enter:
 
 .. code-block:: console
- 
+
 	> query("*")
 
 You should see a list of all visible elements.
@@ -283,7 +298,7 @@ Calabash offers a Ruby API that we support for defining special teststeps.
 A new teststep is defined in the following way:
 
 .. code-block:: ruby
-	
+
 	# Define a regular expression to catch the step
 	Then(/^"(.*?)" radio button should be selected$/) do |arg1|
 	  # Use calls to the Calabash API to get information
@@ -305,7 +320,7 @@ This are some useful functions that the Calabash API provides. You can see more 
 query(uiquery, \*args)
 **********************
 
-Query returns an array with the views on the screen that match it. 
+Query returns an array with the views on the screen that match it.
 
 .. code-block:: ruby
 
@@ -350,7 +365,7 @@ Each result is a Ruby hash map object.
 	]
 
 	> query("UIButton")[0]["label"]
-	
+
 	"SIGN IN"
 
 
@@ -522,7 +537,7 @@ Then, for each Xcode project containing a build target with the Calabash framewo
 1.  In Terminal, ``cd`` into the folder that contains the ``calabash.framework`` file, and run this command:
 
 .. code-block:: console
-	
+
 	$ calabash-ios download
 
 2. Open the project in Xcode.
