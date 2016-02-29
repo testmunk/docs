@@ -15,6 +15,5 @@ Contents:
    ios
    steps
    rest
+   slack
 ..   overview
-
-
