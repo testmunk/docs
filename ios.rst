@@ -82,7 +82,14 @@ Installing framework in Xcode project
 
 .. raw:: html
 
-	<iframe class="tscplayer_inline embeddedObject" name="tsc_player" scrolling="no" frameborder="0" type="text/html" style="overflow:hidden;" src="http://www.screencast.com/users/joshua.moody/folders/Calabash/media/a5477200-b041-4bc3-ba2d-643111771135/embed" height="441" width="699" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	<video controls style="width: 100%;">
+		<source src="https://player.vimeo.com/external/156324089.hd.mp4?s=dbec3e112448ed7f79e67ffa38f78b4fe1554b5f&profile_id=113" type="video/mp4">
+		Your browser does not support the video tag.
+	</video>
+	<p>
+		<a href="https://vimeo.com/156324089" target="_blank">Watch this video on Vimeo</a>
+	</p>
+
 
 |
 |
